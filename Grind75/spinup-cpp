@@ -2,7 +2,7 @@
 
 LC_NUMBER=$1
 LC_TITLE=$2
-SNAKE_CASE=$(echo TestCodeHere | sed -e 's/\([A-Z][a-z]*\)/_\1/g' | \
+SNAKE_CASE=$(echo $2 | sed -e 's/\([A-Z][a-z]*\)/_\1/g' | \
   sed -e 's/^_//' | tr [:lower:] [:upper:])
 
 echo "Spinning up new cpp sandbox in directory:"
