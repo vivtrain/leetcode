@@ -1,0 +1,5 @@
+#ifndef VALID_PALINDROME
+#define VALID_PALINDROME
+
+#endif
+
