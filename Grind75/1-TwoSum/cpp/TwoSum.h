@@ -1,5 +1,5 @@
-#ifndef TWOSUM
-#define TWOSUM
+#ifndef TWO_SUM
+#define TWO_SUM
 
 #include <vector>
 
