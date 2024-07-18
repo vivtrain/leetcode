@@ -16,7 +16,7 @@ sets up a few relevant files for a small, self-contained C++ program. Usage
 looks something like
 
 ```
-./spinup-cpp 1 TwoSum
+. spinup-cpp 1 TwoSum
 ```
 
 and results in the following file structure.
@@ -29,4 +29,7 @@ and results in the following file structure.
     |-- makefile
     `-- test.cpp
 ```
+
+The script `cd`s into the `cpp` directory, opens each of the C++ files in vim,
+and creates a vim session for the layout.
 

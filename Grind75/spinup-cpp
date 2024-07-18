@@ -8,13 +8,51 @@ SNAKE_CASE=$(echo $2 | sed -e 's/\([A-Z][a-z]*\)/_\1/g' | \
 echo "Spinning up new cpp sandbox in directory:"
 echo "    `pwd`/$LC_TITLE/"
 
+# Make the directories and cd into it
 mkdir "$LC_NUMBER-$LC_TITLE"
 CPP="$LC_NUMBER-$LC_TITLE/cpp"
 mkdir "$CPP"
+cd $CPP
 
-printf "#ifndef $SNAKE_CASE\n#define $SNAKE_CASE\n\n#endif\n\n" > $CPP/$LC_TITLE.h
-printf "#include \"$LC_TITLE.h\"\n\n" > $CPP/$LC_TITLE.cpp
-printf "#include \"$LC_TITLE.h\"\n\nint main() {\n    \n}\n\n" > $CPP/test.cpp
-printf "$LC_TITLE:\n\tg++ $LC_TITLE.h $LC_TITLE.cpp test.cpp -o run\n\nclean:\n\trm -rf run\n\n"\
-    > $CPP/makefile
+# C++ Header
+printf "\
+#ifndef $SNAKE_CASE
+#define $SNAKE_CASE
+
+class $LC_TITLE {
+  public:
+    
+  private:
+};
+
+#endif
+
+" > $LC_TITLE.h
+
+# C++ Implementation file
+printf "#include \"$LC_TITLE.h\"\n" > $LC_TITLE.cpp
+
+# C++ Test file containing main
+printf "\
+#include \"$LC_TITLE.h\"
+#include <iostream>
+
+int main() {
+  $LC_TITLE soln;
+}
+
+" > test.cpp
+
+# Makefile
+printf "\
+$LC_TITLE:
+\tg++ $LC_TITLE.h $LC_TITLE.cpp test.cpp -o run
+
+clean:
+\trm -rf run
+
+" > makefile
+
+vim $LC_TITLE.h +"vsp $LC_TITLE.cpp" +"wincmd h" +"sp test.cpp" \
+    +"wincmd k" +mks +wa +"startinsert!"
 
