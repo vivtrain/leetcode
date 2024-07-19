@@ -36,6 +36,7 @@ printf "#include \"$LC_TITLE.h\"\n" > $LC_TITLE.cpp
 printf "\
 #include \"$LC_TITLE.h\"
 #include <iostream>
+#include <cassert>
 
 int main() {
   $LC_TITLE soln;
