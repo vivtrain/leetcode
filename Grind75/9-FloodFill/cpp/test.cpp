@@ -15,11 +15,13 @@ void prettyPrintImage(const Image &image) {
 int main() {
   FloodFill soln;
   std::vector<std::tuple<Image, int, int, int, Image>> testCases;
+
   Image empty = Image{{}};
   Image img1 = Image{{1}};
   Image img0 = Image{{0}};
   Image square = Image{{1,1,1},{1,1,0},{1,0,1}};
   Image rect = Image{{1,1,2},{1,0,1}};
+  Image zeroes = Image{{0,0,0},{0,0,0},{0,0,0}};
   assert(empty == empty);
   assert(img1 == img1);
   assert(square == square);
@@ -34,6 +36,7 @@ int main() {
   testCases.push_back(std::make_tuple(img1, -1, 0, 0, img1));
   testCases.push_back(std::make_tuple(img1, 0, -1, 0, img1));
   testCases.push_back(std::make_tuple(img1, 0, 0, 0, img0));
+  testCases.push_back(std::make_tuple(zeroes, 0, 0, 0, zeroes));
   testCases.push_back(std::make_tuple(square, 1, 1, 2,
         Image{{2,2,2},{2,2,0},{2,0,1}}));
   testCases.push_back(std::make_tuple(rect, 0, 0, 2,

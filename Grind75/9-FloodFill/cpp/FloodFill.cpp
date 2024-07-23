@@ -1,5 +1,5 @@
 #include "FloodFill.h"
-#include <queue>
+#include <stack>
 #include <tuple>
 
 std::vector<std::vector<int>> FloodFill::floodFill(
@@ -17,22 +17,24 @@ std::vector<std::vector<int>> FloodFill::floodFill(
     return image;
 
   int origColor = image[sr][sc];
-  std::queue<std::pair<int, int>> q;
+  std::stack<std::pair<int, int>> q;
+  std::vector<std::vector<bool>> visited(m, std::vector<bool>(n, false));
   q.push(std::make_pair(sr, sc));
 
   while (!q.empty()) {
-    std::pair<int, int> coord = q.front();
+    std::pair<int, int> coord = q.top();
     int row = coord.first;
     int col = coord.second;
     image[row][col] = color;
+    visited[row][col] = true;
     q.pop();
-    if (row-1 >= 0 && image[row-1][col] == origColor)
+    if (row-1 >= 0 && !visited[row-1][col] && image[row-1][col] == origColor)
       q.push(std::make_pair(row-1, col));
-    if (row+1 < m && image[row+1][col] == origColor)
+    if (row+1 < m && !visited[row+1][col] && image[row+1][col] == origColor)
       q.push(std::make_pair(row+1, col));
-    if (col-1 >= 0 && image[row][col-1] == origColor)
+    if (col-1 >= 0 && !visited[row][col-1] && image[row][col-1] == origColor)
       q.push(std::make_pair(row, col-1));
-    if (col+1 < n && image[row][col+1] == origColor)
+    if (col+1 < n && !visited[row][col+1] && image[row][col+1] == origColor)
       q.push(std::make_pair(row, col+1));
   }
   return image;
