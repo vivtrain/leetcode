@@ -55,5 +55,5 @@ clean:
 " > makefile
 
 vim $LC_TITLE.h +"vsp $LC_TITLE.cpp" +"wincmd h" +"sp test.cpp" \
-    +"wincmd k" +mks +wa +"startinsert!"
+    +"wincmd k" +mks +wa +"normal 6gg" +"startinsert!"
 
