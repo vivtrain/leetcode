@@ -22,13 +22,6 @@ int main() {
   Image square = Image{{1,1,1},{1,1,0},{1,0,1}};
   Image rect = Image{{1,1,2},{1,0,1}};
   Image zeroes = Image{{0,0,0},{0,0,0},{0,0,0}};
-  assert(empty == empty);
-  assert(img1 == img1);
-  assert(square == square);
-  assert(rect == rect);
-  assert(empty != img0);
-  assert(img1 != img0);
-  assert(square != rect);
 
   testCases.push_back(std::make_tuple(empty, 0, 0, 0, empty));
   testCases.push_back(std::make_tuple(img1, 1, 0, 0, img1));
