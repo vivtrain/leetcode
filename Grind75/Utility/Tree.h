@@ -17,7 +17,7 @@ namespace BST {
   };
 
   void freeTree(TreeNode *root);
-  void insertTree(TreeNode *root, int val);
+  TreeNode* insertTree(TreeNode *root, int val);
   TreeNode* makeTree(std::vector<int> ints);
   void printTree_recurse(std::string prefix, TreeNode *root, bool isLeft);
   void printTree(TreeNode *root);

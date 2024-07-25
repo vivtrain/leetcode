@@ -10,19 +10,27 @@ namespace BST {
     }
   }
 
-  void insertTree(TreeNode *root, int val) {
+  TreeNode* insertTree(TreeNode *root, int val) {
     if (root) {
       if (val < root->val) {
         if (root->left)
-          insertTree(root->left, val);
-        else
+          return insertTree(root->left, val);
+        else {
           root->left = new TreeNode(val);
+          return root->left;
+        }
       } else if (val > root->val) {
         if (root->right)
-          insertTree(root->right, val);
-        else
+          return insertTree(root->right, val);
+        else {
           root->right = new TreeNode(val);
+          return root->right;
+        }
+      } else {
+        return root;
       }
+    } else {
+      return nullptr;
     }
   }
 
