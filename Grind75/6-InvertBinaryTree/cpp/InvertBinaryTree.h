@@ -5,7 +5,7 @@
 
 class InvertBinaryTree {
   public:
-    TreeNode* invertTree(TreeNode *root);
+    BST::TreeNode* invertTree(BST::TreeNode *root);
   private:
 };
 

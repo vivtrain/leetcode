@@ -6,8 +6,8 @@
 
 int main() {
   InvertBinaryTree inv;
-  TreeNode *tree = makeTree({4,2,6,1,3,5,7});
-  printTree("", inv.invertTree(tree), false);
+  BST::TreeNode *tree = BST::makeTree({4,2,6,1,3,5,7});
+  BST::printTree(inv.invertTree(tree));
   freeTree(tree);
 }
 
