@@ -30,7 +30,7 @@ class $LC_TITLE {
 " > $LC_TITLE.h
 
 # C++ Implementation file
-printf "#include \"$LC_TITLE.h\"\n" > $LC_TITLE.cpp
+printf "#include \"$LC_TITLE.h\"\n\n\n" > $LC_TITLE.cpp
 
 # C++ Test file containing main
 printf "\
@@ -46,11 +46,17 @@ int main() {
 
 # Makefile
 printf "\
-$LC_TITLE:
-\tg++ $LC_TITLE.h $LC_TITLE.cpp test.cpp -o run
+UTIL_DIR = ../../Utility/
+CPP = g++
+
+run: $LC_TITLE.o test.cpp
+\t\$(CPP) $^ -o run
+
+$LC_TITLE.o: $LC_TITLE.h $LC_TITLE.cpp
+\t\$(CPP) -c $^
 
 clean:
-\trm -rf run
+\trm -rf run *.o *.gch
 
 " > makefile
 
