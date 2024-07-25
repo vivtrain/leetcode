@@ -1,6 +1,15 @@
-InvertBinaryTree:
-	g++ InvertBinaryTree.h InvertBinaryTree.cpp test.cpp -o run
+UTIL_DIR = ../../Utility/
+CPP = g++
+
+run: test.cpp InvertBinaryTree.o Tree.o
+	$(CPP) $^ -o run
+
+Tree.o: $(UTIL_DIR)/Tree.h $(UTIL_DIR)/Tree.cpp
+	$(CPP) -c $^
+
+InvertBinaryTree.o: InvertBinaryTree.h InvertBinaryTree.cpp 
+	$(CPP) -c $^
 
 clean:
-	rm -rf run
+	rm -rf run *.o *.gch
 
