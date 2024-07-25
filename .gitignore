@@ -1,4 +1,6 @@
 Grind75/*/cpp/run
 *.swp
 *.vim
+*.o
+*.gch
 
