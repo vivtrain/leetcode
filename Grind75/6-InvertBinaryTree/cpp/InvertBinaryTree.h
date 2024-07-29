@@ -1,7 +1,7 @@
 #ifndef INVERT_BINARY_TREE
 #define INVERT_BINARY_TREE
 
-#include "../../Utility/cpp/Tree.h"
+#include <Tree.h>
 
 class InvertBinaryTree {
   public:
