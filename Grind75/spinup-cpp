@@ -46,19 +46,38 @@ int main() {
 
 # Makefile
 printf "\
-UTIL_DIR = ../../Utility/
-CPP = g++
+UTIL_DIR = ../../Utility/cpp
+INCLUDE_DIR = \$(UTIL_DIR)/include
+IMPL_DIR = \$(UTIL_DIR)/include/impl
+UTIL_OBJ_DIR = \$(UTIL_DIR)/obj
+CPP = g++ -std=c++11
 
 run: $LC_TITLE.o test.cpp
-\t\$(CPP) $^ -o run
+\t\$(CPP) $^ -o run -I\$(INCLUDE_DIR)
 
 $LC_TITLE.o: $LC_TITLE.h $LC_TITLE.cpp
-\t\$(CPP) -c $^
+\t\$(CPP) -c $^ -I\$(INCLUDE_DIR)
 
 clean:
 \trm -rf run *.o *.gch
 
 " > makefile
+
+printf "\
+import os
+
+CPP_INCL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include'))
+CPP_IMPL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include/impl'))
+
+flags = [ '-std=c++11', '-I'+CPP_INCL_DIR , '-I'+CPP_IMPL_DIR ]
+
+def FlagsForFile(filename, **kwargs):
+  return {
+      'flags': flags,
+      'do_cache': True
+      }
+
+" > .ycm_extra_conf.py
 
 vim $LC_TITLE.h +"vsp $LC_TITLE.cpp" +"wincmd h" +"sp test.cpp" \
     +"wincmd k" +mks +wa +"normal 6gg" +"startinsert!"
