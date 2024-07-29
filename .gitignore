@@ -5,4 +5,5 @@ Grind75/*/cpp/run
 *.gch
 */__pycache__/*
 *.py[cod]
+*/.ycm_extra_conf.py
 
