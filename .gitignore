@@ -3,4 +3,6 @@ Grind75/*/cpp/run
 *.vim
 *.o
 *.gch
+*/__pycache__/*
+*.py[cod]
 
