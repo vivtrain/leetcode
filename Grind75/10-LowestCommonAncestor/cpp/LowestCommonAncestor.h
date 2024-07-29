@@ -1,7 +1,7 @@
 #ifndef LOWEST_COMMON_ANCESTOR
 #define LOWEST_COMMON_ANCESTOR
 
-#include "../../Utility/Tree.h"
+#include <Tree.h>
 
 class LowestCommonAncestor {
   public:

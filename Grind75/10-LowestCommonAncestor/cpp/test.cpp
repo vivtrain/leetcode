@@ -1,6 +1,7 @@
 #include "LowestCommonAncestor.h"
 #include <iostream>
 #include <cassert>
+#include <Tree.h>
 
 int main() {
   LowestCommonAncestor soln;
