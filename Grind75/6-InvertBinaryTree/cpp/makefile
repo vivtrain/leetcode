@@ -1,4 +1,4 @@
-UTIL_DIR = ../../Utility/
+UTIL_DIR = ../../Utility/cpp
 CPP = g++
 
 run: test.cpp InvertBinaryTree.o Tree.o

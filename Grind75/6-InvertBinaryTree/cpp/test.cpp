@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "../../Utility/Tree.h"
+#include "../../Utility/cpp/Tree.h"
 
 int main() {
   InvertBinaryTree inv;
