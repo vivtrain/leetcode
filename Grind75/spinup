@@ -116,12 +116,6 @@ CPP_IMPL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include/impl')
 flags = [
     '-Wall',
     '-Wextra',
-    '-Werror',
-    '-Wno-long-long',
-    '-Wno-variadic-macros',
-    '-fexceptions',
-    '-ferror-limit=10000',
-    '-DNDEBUG',
     '-std=c++11',
     '-xc++',
     '-I'+CPP_INCL_DIR ,
