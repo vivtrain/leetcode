@@ -1,4 +1,5 @@
 #include <Tree.h>
+#include <iostream>
 
 namespace BST {
 
@@ -48,6 +49,8 @@ namespace BST {
       std::cout << prefix << (isLeft ? "|--" : "`--") << root->val << std::endl;
       printTree_recurse(prefix + (isLeft ? "|  " : "   "), root->left, true);
       printTree_recurse(prefix + (isLeft ? "|  " : "   "), root->right, false);
+    } else {
+      std::cout << prefix << (isLeft ? "|--" : "`--") << "." << std::endl;
     }
   }
   void printTree(TreeNode *root) {

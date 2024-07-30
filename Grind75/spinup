@@ -113,9 +113,24 @@ import os
 CPP_INCL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include'))
 CPP_IMPL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include/impl'))
 
-flags = [ '-std=c++11', '-I'+CPP_INCL_DIR , '-I'+CPP_IMPL_DIR ]
+flags = [
+    '-Wall',
+    '-Wextra',
+    '-Werror',
+    '-Wno-long-long',
+    '-Wno-variadic-macros',
+    '-fexceptions',
+    '-ferror-limit=10000',
+    '-DNDEBUG',
+    '-std=c++11',
+    '-xc++',
+    '-I'+CPP_INCL_DIR ,
+    '-I'+CPP_IMPL_DIR
+    ]
 
-def FlagsForFile(filename, **kwargs):
+SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', ]
+
+def FlagsForFile( filename, **kwargs ):
   return {
       'flags': flags,
       'do_cache': True

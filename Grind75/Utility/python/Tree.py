@@ -1,0 +1,46 @@
+from __future__ import annotations
+
+class TreeNode:
+  def __init__(self, val, left=None, right=None):
+    self.val = val
+    self.left = left
+    self.right = right
+
+def insertTree(tree: TreeNode, val) -> TreeNode:
+  while tree != None:
+    if val < tree.val:
+      if tree.left == None:
+        tree.left = TreeNode(val)
+        return tree.left
+      else:
+        tree = tree.left
+    elif val > tree.val:
+      if tree.right == None:
+        tree.right = TreeNode(val)
+        return tree.right
+      else:
+        tree = tree.right
+    else:
+      return tree
+  return TreeNode(val)
+
+def makeTree(lst: list) -> TreeNode:
+  if lst == []:
+    return None
+  root = insertTree(None, lst[0])
+  for i in range(1, len(lst)):
+    insertTree(root, lst[i])
+  return root
+
+def printTree_recurse(prefix: str, tree: TreeNode, isLeft: bool):
+  if tree:
+    print(prefix + ('|--' if isLeft else '`--'), tree.val, sep='')
+    printTree_recurse(prefix + ('|  ' if isLeft else '   '), tree.left, True)
+    printTree_recurse(prefix + ('|  ' if isLeft else '   '), tree.right, False)
+  else:
+    print(prefix + ('|--' if isLeft else '`--'), '.', sep='')
+
+def printTree(tree: TreeNode):
+  printTree_recurse('', tree, False)
+
+
