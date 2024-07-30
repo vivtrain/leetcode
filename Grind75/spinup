@@ -95,11 +95,11 @@ IMPL_DIR = \$(UTIL_DIR)/include/impl
 UTIL_OBJ_DIR = \$(UTIL_DIR)/obj
 CPP = g++ -std=c++11
 
-run: $LC_TITLE.o test.cpp
+run: test.cpp $LC_TITLE.o
 \t\$(CPP) $^ -o run -I\$(INCLUDE_DIR)
 
-$LC_TITLE.o: $LC_TITLE.h $LC_TITLE.cpp
-\t\$(CPP) -c $^ -I\$(INCLUDE_DIR)
+$LC_TITLE.o: $LC_TITLE.cpp $LC_TITLE.h
+\t\$(CPP) -c $< -I\$(INCLUDE_DIR)
 
 clean:
 \trm -rf run *.o *.gch
