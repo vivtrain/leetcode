@@ -1,0 +1,130 @@
+#!/bin/bash
+
+# Grab command-line args
+LC_NUMBER=$1
+LC_TITLE=$2
+
+USAGE="Usage: . spinup PROBLEM_NUMBER PROBLEM_NAME_PASCAL"
+
+# Check command-line args
+if [[ (-z $1) || (-z $2) || ($1 =~ [^0-9]) ]]; then
+  echo $USAGE
+  return 1
+fi
+
+
+# Make top-level directory for leetcode problem
+echo "Spinning up new cpp and python sandbox in directory:"
+echo "    `pwd`/$LC_TITLE/"
+LC_DIR="$LC_NUMBER-$LC_TITLE"
+mkdir $LC_DIR
+cd $LC_DIR > /dev/null
+
+# Generate the python directory and generate a script template #################
+PY_DIR='python'
+mkdir $PY_DIR
+cd $PY_DIR > /dev/null
+printf "\
+#!/bin/python3
+
+from __future__ import annotations
+
+class Solution(object):
+  pass
+
+if __name__ == '__main__':
+  soln = Solution()
+  testCases = []
+  
+  for test in testCases:
+    pass
+  print('TESTS PASSED!')
+
+" > $LC_TITLE.py
+chmod +x $LC_TITLE.py
+cd - > /dev/null
+
+# Make the cpp directory and cd into it
+CPP_DIR='cpp'
+mkdir $CPP_DIR
+cd $CPP_DIR > /dev/null
+
+# Generate snake case for include guard
+SNAKE_CASE=$(echo $2 | sed -e 's/\([A-Z][a-z]*\)/_\1/g' | \
+  sed -e 's/^_//' | tr [:lower:] [:upper:])
+
+# Generate C++ Header file #####################################################
+printf "\
+#ifndef $SNAKE_CASE
+#define $SNAKE_CASE
+
+class $LC_TITLE {
+  public:
+  private:
+};
+
+#endif
+
+" > $LC_TITLE.h
+
+# Generate C++ Implementation file #############################################
+printf "\
+#include \"$LC_TITLE.h\"
+
+" > $LC_TITLE.cpp
+
+# Generate C++ Test file containing main #######################################
+printf "\
+#include \"$LC_TITLE.h\"
+#include <iostream>
+#include <cassert>
+
+int main() {
+  $LC_TITLE soln;
+}
+
+" > test.cpp
+
+# Generate Makefile ############################################################
+printf "\
+UTIL_DIR = ../../Utility/cpp
+INCLUDE_DIR = \$(UTIL_DIR)/include
+IMPL_DIR = \$(UTIL_DIR)/include/impl
+UTIL_OBJ_DIR = \$(UTIL_DIR)/obj
+CPP = g++ -std=c++11
+
+run: $LC_TITLE.o test.cpp
+\t\$(CPP) $^ -o run -I\$(INCLUDE_DIR)
+
+$LC_TITLE.o: $LC_TITLE.h $LC_TITLE.cpp
+\t\$(CPP) -c $^ -I\$(INCLUDE_DIR)
+
+clean:
+\trm -rf run *.o *.gch
+
+" > makefile
+
+# Generate .ycm_extra_conf #####################################################
+printf "\
+import os
+
+CPP_INCL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include'))
+CPP_IMPL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include/impl'))
+
+flags = [ '-std=c++11', '-I'+CPP_INCL_DIR , '-I'+CPP_IMPL_DIR ]
+
+def FlagsForFile(filename, **kwargs):
+  return {
+      'flags': flags,
+      'do_cache': True
+      }
+
+" > .ycm_extra_conf.py
+
+# Make a vim session with splits
+vim $LC_TITLE.h +"vsp $LC_TITLE.cpp" +"wincmd h" +"sp test.cpp" \
+    +"wincmd k" +wa +"normal gg" +"set ssop-=options" +mks +qa
+
+# Return to top-level directory
+cd - > /dev/null
+
