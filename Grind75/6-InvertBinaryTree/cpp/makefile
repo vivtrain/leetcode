@@ -7,8 +7,8 @@ CPP = g++ -std=c++11
 run: test.cpp InvertBinaryTree.o $(UTIL_OBJ_DIR)/Tree.o
 	$(CPP) $^ -o run -I$(INCLUDE_DIR)
 
-$(UTIL_OBJ_DIR)/Tree.o: $(IMPL_DIR)/Tree.cpp
-	$(CPP) -o $@ -c $^ -I$(INCLUDE_DIR)
+$(UTIL_OBJ_DIR)/Tree.o: $(IMPL_DIR)/Tree.cpp $(INCLUDE_DIR)/Tree.h
+	$(CPP) -o $@ -c $< -I$(INCLUDE_DIR)
 
 InvertBinaryTree.o: InvertBinaryTree.h InvertBinaryTree.cpp 
 	$(CPP) -c $^ -I$(INCLUDE_DIR)
