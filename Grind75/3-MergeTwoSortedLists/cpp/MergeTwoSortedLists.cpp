@@ -1,11 +1,11 @@
 #include "MergeTwoSortedLists.h"
 
-ListNode* MergeTwoSortedLists::mergeTwoSortedLists(ListNode *list1,
-    ListNode *list2) {
+List::ListNode* MergeTwoSortedLists::mergeTwoSortedLists(List::ListNode *list1,
+    List::ListNode *list2) {
 
-  ListNode *list3 = nullptr;
-  ListNode *head = list3;
-  ListNode *prev = nullptr;
+  List::ListNode *list3 = nullptr;
+  List::ListNode *head = list3;
+  List::ListNode *prev = nullptr;
 
   while (true) {
     if (list1 && list2) {
@@ -44,10 +44,10 @@ ListNode* MergeTwoSortedLists::mergeTwoSortedLists(ListNode *list1,
   return head;
 }
 
-ListNode* MergeTwoSortedLists::mergeTwoSortedLists2(ListNode *list1,
-    ListNode *list2) {
+List::ListNode* MergeTwoSortedLists::mergeTwoSortedLists2(List::ListNode *list1,
+    List::ListNode *list2) {
 
-  ListNode *list3, *head;
+  List::ListNode *list3, *head;
   if (list1 && list2) {
     if (list1->val < list2->val) {
       list3 = list1;
@@ -87,15 +87,15 @@ ListNode* MergeTwoSortedLists::mergeTwoSortedLists2(ListNode *list1,
   return head;
 }
 
-ListNode* MergeTwoSortedLists::mergeTwoSortedLists3(ListNode *list1,
-    ListNode *list2) {
+List::ListNode* MergeTwoSortedLists::mergeTwoSortedLists3(List::ListNode *list1,
+    List::ListNode *list2) {
 
   if (!list2)
     return list1;
   if (!list1)
     return list2;
 
-  ListNode *list3, *head;
+  List::ListNode *list3, *head;
   if (list1->val < list2->val) {
     list3 = list1;
     list1 = list1->next;
@@ -124,10 +124,10 @@ ListNode* MergeTwoSortedLists::mergeTwoSortedLists3(ListNode *list1,
   return head;
 }
 
-ListNode* MergeTwoSortedLists::mergeTwoSortedLists_recursive(ListNode *list1,
-    ListNode *list2) {
+List::ListNode* MergeTwoSortedLists::mergeTwoSortedLists_recursive(List::ListNode *list1,
+    List::ListNode *list2) {
 
-  ListNode *list3;
+  List::ListNode *list3;
   if (list1 && list2) {
     if (list1->val < list2->val) {
       list3 = list1;

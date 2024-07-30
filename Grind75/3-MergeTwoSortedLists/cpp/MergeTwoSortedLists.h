@@ -1,20 +1,14 @@
 #ifndef MERGE_TWO_SORTED_LISTS
 #define MERGE_TWO_SORTED_LISTS
 
-struct ListNode {
-  int val;
-  ListNode *next;
-  ListNode() : val(0), next(nullptr) {}
-  ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include <List.h>
 
 class MergeTwoSortedLists {
   public:
-    ListNode* mergeTwoSortedLists(ListNode *list1, ListNode *list2);
-    ListNode* mergeTwoSortedLists2(ListNode *list1, ListNode *list2);
-    ListNode* mergeTwoSortedLists3(ListNode *list1, ListNode *list2);
-    ListNode* mergeTwoSortedLists_recursive(ListNode *list1, ListNode *list2);
+    List::ListNode* mergeTwoSortedLists(List::ListNode *list1, List::ListNode *list2);
+    List::ListNode* mergeTwoSortedLists2(List::ListNode *list1, List::ListNode *list2);
+    List::ListNode* mergeTwoSortedLists3(List::ListNode *list1, List::ListNode *list2);
+    List::ListNode* mergeTwoSortedLists_recursive(List::ListNode *list1, List::ListNode *list2);
 };
 
 #endif
