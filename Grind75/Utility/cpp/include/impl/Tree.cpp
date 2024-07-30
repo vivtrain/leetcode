@@ -44,7 +44,8 @@ namespace BST {
     return root;
   }
 
-  void printTree_recurse(std::string prefix, TreeNode *root, bool isLeft) {
+  
+  void printTree_recurse(std::string prefix, BST::TreeNode *root, bool isLeft) {
     if (root) {
       std::cout << prefix << (isLeft ? "|--" : "`--") << root->val << std::endl;
       printTree_recurse(prefix + (isLeft ? "|  " : "   "), root->left, true);
@@ -56,5 +57,7 @@ namespace BST {
   void printTree(TreeNode *root) {
     printTree_recurse("", root, false);
   }
+
 }
+
 
