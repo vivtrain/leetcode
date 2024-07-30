@@ -11,25 +11,36 @@ miscellaneous or domain-specific questions to study.
 
 ## Nice Things
 ### Spinup
-In the `Grind75/` directory, there is a brief script called `spinup-cpp` that
-sets up a few relevant files for a small, self-contained C++ program. Usage
-looks something like
+In the `Grind75/` directory, there is a brief script called `spinup` that
+sets up a few relevant files for a small, self-contained C++ program and a small
+self-contained Python3 program. Usage looks something like
 
 ```
-. spinup-cpp 1 TwoSum
+. spinup 1 TwoSum
 ```
 
 and results in the following file structure.
 
 ```
 1-TwoSum/
-`-- cpp
-    |-- TwoSum.cpp
-    |-- TwoSum.h
-    |-- makefile
-    `-- test.cpp
+|-- cpp
+|   |-- TwoSum.cpp
+|   |-- TwoSum.h
+|   |-- makefile
+|   |-- run
+|   `-- test.cpp
+`-- python
+    `-- TwoSum.py
 ```
 
-The script `cd`s into the `cpp` directory, opens each of the C++ files in vim,
-and creates a vim session for the layout.
+The script also creates a `.ycm_extra_conf` in the `cpp/` directory for adding
+custom flags for the vim plugin
+[YouCompleteMe](https://github.com/ycm-core/YouCompleteMe), a vim session for
+the `cpp/` directory, and `chmod +x`s the Python file.
 
+### Utility
+In the `Grind75/` directory, I've created a `Utility` directory to which I can
+add common functions and data structures as I go to reduce code duplication.
+The `makefile` is setup with some variables with which C++ programs can be
+properly compiled, and the Python script contains a call to `sys.path.append`
+including the appropriate directory.  
