@@ -1,4 +1,9 @@
 #include "BalancedBinaryTree.h"
+#include <cstdlib>
+
+constexpr int max(const int &first, const int &second) {
+  return (first > second) ? first : second;
+}
 
 bool BalancedBinaryTree::isBalanced_recurse(BST::TreeNode *root,
     int &leftDepth, int &rightDepth) {
@@ -13,27 +18,39 @@ bool BalancedBinaryTree::isBalanced_recurse(BST::TreeNode *root,
       leftRightDepth);
   if (!leftBalanced)
     return false;
-  leftDepth = (leftLeftDepth > leftRightDepth) ? leftLeftDepth+1
-      : leftRightDepth+1;
+  leftDepth = max(leftLeftDepth+1, leftRightDepth+1);
   bool rightBalanced = isBalanced_recurse(root->right, rightLeftDepth,
       rightRightDepth);
   if (!rightBalanced)
     return false;
-  rightDepth = (rightLeftDepth > rightRightDepth) ? rightLeftDepth+1
-      : rightRightDepth+1;
-  return differByAtMost1(leftDepth, rightDepth);
+  rightDepth = max(rightLeftDepth+1, rightRightDepth+1);
+  return abs(leftDepth - rightDepth) <= 1;
 }
 
 bool BalancedBinaryTree::isBalanced(BST::TreeNode *root) {
   int leftDepth = 0, rightDepth = 0;
   if (isBalanced_recurse(root, leftDepth, rightDepth))
-    return differByAtMost1(leftDepth, rightDepth);
+    return abs(leftDepth - rightDepth) <= 1;
   else
     return false;
 }
 
-bool BalancedBinaryTree::differByAtMost1(int first, int second) {
-  int diff = first - second;
-  return diff < 2 && diff > -2;
+int BalancedBinaryTree::height(BST::TreeNode *root) {
+  if (!root)
+    return 0;
+  int leftHeight = height(root->left);
+  if (leftHeight == -1)
+    return -1;
+  int rightHeight = height(root->right);
+  if (rightHeight == -1)
+    return -1;
+  if (abs(leftHeight-rightHeight) > 1)
+    return -1;
+  return max(leftHeight, rightHeight)+1;
+}
+
+
+bool BalancedBinaryTree::isBalanced2(BST::TreeNode *root) {
+  return height(root) != -1;
 }
 

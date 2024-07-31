@@ -6,10 +6,11 @@
 class BalancedBinaryTree {
   public:
     bool isBalanced(BST::TreeNode *root);
+    bool isBalanced2(BST::TreeNode *root);
   private:
     bool isBalanced_recurse(BST::TreeNode *root, int &leftDepth,
         int &rightDepth);
-    bool differByAtMost1(int first, int second);
+    int height(BST::TreeNode *root);
 };
 
 #endif
