@@ -3,14 +3,6 @@
 
 namespace List {
 
-  void printList(ListNode *list) {
-    while (list) {
-      std::cout << list->val << " -> ";
-      list = list->next;
-    }
-    std::cout << '.' << std::endl;
-  }
-
   ListNode* makeList(std::vector<int> values) {
     ListNode *head = nullptr, *node = nullptr, *prev = nullptr;
     for (int v : values) {
@@ -31,6 +23,23 @@ namespace List {
       free(list);
       list = next;
     }
+  }
+
+  void printList(ListNode *list) {
+    while (list) {
+      std::cout << list->val << " -> ";
+      list = list->next;
+    }
+    std::cout << '.' << std::endl;
+  }
+
+  ListNode* tail(ListNode *head) {
+    ListNode *node = head, *prev = nullptr;
+    while (node) {
+      prev = node;
+      node = node->next;
+    }
+    return prev;
   }
 
 }

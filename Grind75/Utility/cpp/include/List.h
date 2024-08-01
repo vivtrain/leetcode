@@ -13,9 +13,10 @@ namespace List {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
   };
 
-  void printList(ListNode *list);
   ListNode* makeList(std::vector<int> values);
   void freeList(ListNode *list);
+  void printList(ListNode *list);
+  ListNode* tail(ListNode *head);
 }
 
 #endif
