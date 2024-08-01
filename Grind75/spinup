@@ -43,7 +43,6 @@ if __name__ == '__main__':
   print('TESTS PASSED!')
 
 " > $LC_TITLE.py
-chmod +x $LC_TITLE.py
 cd - > /dev/null
 
 # Make the cpp directory and cd into it
