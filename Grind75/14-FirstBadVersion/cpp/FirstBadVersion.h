@@ -5,10 +5,11 @@ class FirstBadVersion {
   public:
     int firstBadVersion(int n);
     int firstBadVersion2(int n);
+    int firstBadVersion3(int n);
     int bad = 0;
     int n = 0;
   private:
-    int firstBadVersion_recurse(int m, int n);
+    int firstBadVersion2_recurse(int m, int n);
     bool isBadVersion(int version) {
       if (version < 1 || version > n)
         throw;

@@ -12,7 +12,7 @@ int main() {
       for (int i = 1; i <= n; i++)
         std::cout << i << ' ' << std::flush;
       std::cout << "\nbad should be " << bad << std::flush;
-      int result = soln.firstBadVersion2(n);
+      int result = soln.firstBadVersion(n);
       std::cout << ", got " << result << std::endl;;
       assert(result == bad);
     }
