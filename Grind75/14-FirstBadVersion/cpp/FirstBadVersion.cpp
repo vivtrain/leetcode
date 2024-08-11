@@ -16,3 +16,20 @@ int FirstBadVersion::firstBadVersion(int n) {
   return firstBadVersion_recurse(1, n);
 }
 
+int FirstBadVersion::firstBadVersion2(int n) {
+  int low = 1, high = n, mid;
+
+  while (low < high) {
+    if (high - low == 1)
+      break;
+    mid = low + (high-low)/2;
+    bool midBad = isBadVersion(mid);
+    if (midBad) {
+      high = mid;
+    } else {
+      low = mid;
+    }
+  }
+  return isBadVersion(low) ? low : high;
+}
+

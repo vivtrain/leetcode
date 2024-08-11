@@ -4,6 +4,7 @@
 class FirstBadVersion {
   public:
     int firstBadVersion(int n);
+    int firstBadVersion2(int n);
     int bad = 0;
     int n = 0;
   private:
