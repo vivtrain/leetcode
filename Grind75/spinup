@@ -37,7 +37,7 @@ class Solution(object):
 if __name__ == '__main__':
   soln = Solution()
   testCases = []
-  
+
   for test in testCases:
     pass
   print('TESTS PASSED!')
