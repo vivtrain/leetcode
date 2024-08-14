@@ -27,7 +27,6 @@ and results in the following file structure.
 |   |-- TwoSum.cpp
 |   |-- TwoSum.h
 |   |-- makefile
-|   |-- run
 |   `-- test.cpp
 `-- python
     `-- TwoSum.py
@@ -35,12 +34,12 @@ and results in the following file structure.
 
 The script also creates a `.ycm_extra_conf` in the `cpp/` directory for adding
 custom flags for the vim plugin
-[YouCompleteMe](https://github.com/ycm-core/YouCompleteMe), a vim session for
-the `cpp/` directory, and `chmod +x`s the Python file.
+[YouCompleteMe](https://github.com/ycm-core/YouCompleteMe) and a vim session for
+the `cpp/` directory.
 
 ### Utility
 In the `Grind75/` directory, I've created a `Utility` directory to which I can
 add common functions and data structures as I go to reduce code duplication.
 The `makefile` is setup with some variables with which C++ programs can be
 properly compiled, and the Python script contains a call to `sys.path.append`
-including the appropriate directory.  
+including the appropriate directory.
