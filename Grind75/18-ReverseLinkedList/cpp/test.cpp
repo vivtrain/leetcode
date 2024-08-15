@@ -22,8 +22,10 @@ int main() {
   for (auto test : testCases) {
     ListNode *fwd = makeList(test.first), *rev = makeList(test.second);
     cout << "Reverse of " << strList(fwd) << " should be " << strList(rev)
-      << endl;
-    assert(listEquals(rev, soln.reverseList(fwd)));
+      << flush;
+    ListNode *result = soln.reverseList_recursive(fwd);
+    cout << "\n\tis " << strList(result) << endl;
+    assert(listEquals(rev, result));
   }
   cout << "TESTS PASSED!" << endl;
 }

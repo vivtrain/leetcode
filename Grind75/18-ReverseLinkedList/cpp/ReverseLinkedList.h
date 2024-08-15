@@ -6,6 +6,7 @@
 class ReverseLinkedList {
   public:
     List::ListNode* reverseList(List::ListNode* head);
+    List::ListNode* reverseList_recursive(List::ListNode* head);
   private:
 };
 

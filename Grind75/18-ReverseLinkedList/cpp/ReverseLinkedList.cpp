@@ -12,3 +12,15 @@ List::ListNode* ReverseLinkedList::reverseList(List::ListNode* head) {
   return prev;
 }
 
+List::ListNode* ReverseLinkedList::reverseList_recursive(List::ListNode* head) {
+  if (!head)
+    return nullptr;
+  if (!head->next)
+    return head;
+  List::ListNode *restOldHead = head->next;
+  List::ListNode *restReversed = reverseList_recursive(head->next);
+  restOldHead->next = head;
+  head->next = nullptr;
+  return restReversed;
+}
+
