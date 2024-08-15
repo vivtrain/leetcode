@@ -1,5 +1,6 @@
 #include <List.h> 
 #include <iostream>
+#include <string>
 
 namespace List {
 
@@ -31,6 +32,16 @@ namespace List {
       lst = lst->next;
     }
     std::cout << '.' << std::endl;
+  }
+
+  std::string strList(ListNode *lst) {
+    std::string output;
+    while (lst) {
+      output += std::to_string(lst->val) + " -> ";
+      lst = lst->next;
+    }
+    output += '.';
+    return output;
   }
 
   ListNode* tail(ListNode *head) {
