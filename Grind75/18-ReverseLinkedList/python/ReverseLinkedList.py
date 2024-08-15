@@ -17,6 +17,18 @@ class Solution(object):
       node = nxt
     return prev
 
+  def reverseList_recursive(self, head: Optional[ListNode]) \
+      -> Optional[ListNode]:
+    if head is None:
+      return None
+    if head.next is None:
+      return head
+    restTail = head.next
+    rest = self.reverseList_recursive(head.next)
+    restTail.next = head
+    head.next = None
+    return rest
+
 if __name__ == '__main__':
   soln = Solution()
 
@@ -24,8 +36,10 @@ if __name__ == '__main__':
     fwd = list(range(n))
     rev = list(fwd)
     rev.reverse()
-    print(fwd, rev)
-    assert extractList(soln.reverseList(makeList(fwd))) == rev
+    print(f'{fwd}, {rev} -> ', end='')
+    result = extractList(soln.reverseList_recursive(makeList(fwd)))
+    print(result)
+    assert result == rev
 
   print('TESTS PASSED!')
 
