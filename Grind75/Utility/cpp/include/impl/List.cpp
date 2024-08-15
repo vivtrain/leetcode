@@ -16,19 +16,19 @@ namespace List {
     return head;
   }
 
-  void freeList(ListNode *list) {
+  void freeList(ListNode *lst) {
     ListNode *next;
-    while (list) {
-      next = list->next;
-      free(list);
-      list = next;
+    while (lst) {
+      next = lst->next;
+      free(lst);
+      lst = next;
     }
   }
 
-  void printList(ListNode *list) {
-    while (list) {
-      std::cout << list->val << " -> ";
-      list = list->next;
+  void printList(ListNode *lst) {
+    while (lst) {
+      std::cout << lst->val << " -> ";
+      lst = lst->next;
     }
     std::cout << '.' << std::endl;
   }

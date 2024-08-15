@@ -14,8 +14,8 @@ namespace List {
   };
 
   ListNode* makeList(std::vector<int> values);
-  void freeList(ListNode *list);
-  void printList(ListNode *list);
+  void freeList(ListNode *lst);
+  void printList(ListNode *lst);
   ListNode* tail(ListNode *head);
 }
 
