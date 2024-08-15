@@ -19,6 +19,7 @@ namespace List {
   void printList(ListNode *lst);
   std::string strList(ListNode *lst);
   ListNode* tail(ListNode *head);
+  bool listEquals(ListNode *l1, ListNode *l2);
 }
 
 #endif
