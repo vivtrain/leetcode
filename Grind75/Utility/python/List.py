@@ -16,6 +16,13 @@ def makeList(lst: Optional[list]) -> Optional[ListNode]:
     node = node.next
   return head
 
+def extractList(lst: Optional[ListNode]) -> list:
+  extracted = []
+  while lst is not None:
+    extracted.append(lst.val)
+    lst = lst.next
+  return extracted
+
 def printList(lst: Optional[list]) -> None:
   print('[', end='')
   while lst:
