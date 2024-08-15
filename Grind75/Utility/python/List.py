@@ -36,5 +36,5 @@ def compareLists(list1: Optional[ListNode], list2: list) -> bool:
     if list1.val != v:
       return False
     list1 = list1.next
-  return True
+  return list1 is None
 
