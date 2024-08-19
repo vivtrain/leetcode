@@ -98,7 +98,7 @@ run: test.cpp $LC_TITLE.o
 \t\$(CPP) $^ -o run -I\$(INCLUDE_DIR)
 
 $LC_TITLE.o: $LC_TITLE.cpp $LC_TITLE.h
-\t\$(CPP) -c $< -I\$(INCLUDE_DIR)
+\t\$(CPP) -o \$@ -c $< -I\$(INCLUDE_DIR)
 
 clean:
 \trm -rf run *.o *.gch
