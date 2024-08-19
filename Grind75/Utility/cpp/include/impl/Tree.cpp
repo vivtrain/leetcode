@@ -1,5 +1,6 @@
 #include <Tree.h>
 #include <iostream>
+#include <vector>
 
 namespace BST {
 
@@ -44,8 +45,24 @@ namespace BST {
     return root;
   }
 
+  TreeNode* bushy(int depth) {
+    size_t N = 1, exp = depth, levels = 0, l = 1, t = 0;
+    for (size_t i = 0; i < exp; i++)
+      N += N;
+    for (size_t n = N; n > 0; n /= 2)
+      levels++;
+    std::vector<int> tree(N-1);
+    for (size_t i = 2; i < levels+1; i++) {
+      l += l;
+      for (size_t n = N/l; n < N; n+=N/l*2) {
+        tree[t] = n;
+        t++;
+      }
+    }
+    return makeTree(tree);
+  }
   
-  void printTree_recurse(std::string prefix, BST::TreeNode *root, bool isLeft) {
+  void printTree_recurse(std::string prefix, TreeNode *root, bool isLeft) {
     if (root) {
       std::cout << prefix << (isLeft ? "|--" : "`--") << root->val << std::endl;
       printTree_recurse(prefix + (isLeft ? "|  " : "   "), root->left, true);
