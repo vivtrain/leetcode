@@ -5,6 +5,7 @@
 #include <vector>
 #include <tuple>
 #include <string>
+#include <exception>
 
 int main() {
   using namespace std;
@@ -23,9 +24,20 @@ int main() {
     ListNode *fwd = makeList(test.first), *rev = makeList(test.second);
     cout << "Reverse of " << strList(fwd) << " should be " << strList(rev)
       << flush;
-    ListNode *result = soln.reverseList_recursive(fwd);
-    cout << "\n\tis " << strList(result) << endl;
-    assert(listEquals(rev, result));
+    ListNode *result;
+    try {
+      result = soln.reverseList(fwd);
+      cout << "\n\tis " << strList(result) << endl;
+      assert(listEquals(rev, result));
+    } catch(std::exception e) {
+      cout << e.what() << endl;
+      freeList(result); // TODO: Memory leaks if list ends up in unusable state
+      freeList(rev);
+      cout << "TEST FAILED!" << endl;
+      exit(1);
+    }
+    freeList(result);
+    freeList(rev);
   }
   cout << "TESTS PASSED!" << endl;
 }
