@@ -1,4 +1,4 @@
-#include <List.h> 
+#include <List.h>
 #include <iostream>
 #include <string>
 
@@ -63,6 +63,16 @@ namespace List {
     if (l1 || l2)
       return false;
     return true;
+  }
+
+  ListNode* atIndex(ListNode *lst, size_t index) {
+    ListNode *node = lst;
+    for (size_t i = 0; i < index; i++) {
+      if (!node)
+        return nullptr;
+      node = node->next;
+    }
+    return node;
   }
 
 }

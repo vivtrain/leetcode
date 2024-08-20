@@ -20,6 +20,7 @@ namespace List {
   std::string strList(ListNode *lst);
   ListNode* tail(ListNode *head);
   bool listEquals(ListNode *l1, ListNode *l2);
+  ListNode* atIndex(ListNode *lst, size_t index);
 }
 
 #endif
