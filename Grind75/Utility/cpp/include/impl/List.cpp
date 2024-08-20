@@ -21,7 +21,7 @@ namespace List {
     ListNode *next;
     while (lst) {
       next = lst->next;
-      free(lst);
+      delete lst;
       lst = next;
     }
   }
