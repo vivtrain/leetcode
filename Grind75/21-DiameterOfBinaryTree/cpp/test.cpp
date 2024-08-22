@@ -27,13 +27,14 @@ int main() {
     cout << "should yield max diameter of " << test.second << flush;
     int result = soln.diameterOfBinaryTree2(tree);
     cout << ", got " << result << endl << endl;
+    freeTree(tree);
     assert(result == test.second);
   }
   cout << "TESTS PASSED!\n" << endl;
 
   cout << "Performance testing..." << endl;
   auto start0 = Time::now();
-  TreeNode *tree = bushy(23);
+  TreeNode *tree = bushy(20);
   double elapsed0 = Time::elapsed(start0);
 
   auto start1 = Time::now();
@@ -47,5 +48,6 @@ int main() {
   cout << "Time spent building a big tree : " << elapsed0 << 's' << endl;
   cout << "Time spent in solution 1: " << elapsed1 << 's' << endl;
   cout << "Time spent in solution 2: " << elapsed2 << 's' << endl;
+  freeTree(tree);
 }
 
