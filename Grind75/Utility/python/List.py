@@ -3,8 +3,8 @@ from typing import Optional
 
 class ListNode:
   def __init__(self, val=0, nxt=None):
-    self.val = val
-    self.next = nxt
+    self.val: int = val
+    self.next: ListNode = nxt
 
 def makeList(lst: Optional[list]) -> Optional[ListNode]:
   if not lst:
@@ -44,4 +44,13 @@ def compareLists(list1: Optional[ListNode], list2: list) -> bool:
       return False
     list1 = list1.next
   return list1 is None
+
+def atIndex(lst: Optional[ListNode], index: int) -> Optional[ListNode]:
+  if index < 0:
+    return None
+  for i in range(index):
+    if lst is None:
+      return None
+    lst = lst.next
+  return lst
 
