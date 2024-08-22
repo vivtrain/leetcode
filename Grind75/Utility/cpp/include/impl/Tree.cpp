@@ -8,7 +8,7 @@ namespace BST {
     if (root) {
       freeTree(root->left);
       freeTree(root->right);
-      free(root);
+      delete root;
     }
   }
 
@@ -61,7 +61,7 @@ namespace BST {
     }
     return makeTree(tree);
   }
-  
+
   void printTree_recurse(std::string prefix, TreeNode *root, bool isLeft) {
     if (root) {
       std::cout << prefix << (isLeft ? "|--" : "`--") << root->val << std::endl;
