@@ -16,5 +16,6 @@ int main() {
   BST::TreeNode *lca = soln.lowestCommonAncestor(tree, p, q);
   if (lca)
     std::cout << lca->val << std::endl;
+  BST::freeTree(tree);
 }
 
