@@ -24,7 +24,7 @@ int main() {
     int depth = test.second;
     BST::printTree(tree);
     cout << "Max depth should be " << depth << ", " << flush;
-    int result = soln.maxDepth(tree);
+    int result = soln.maxDepth2(tree);
     cout << "got " << result << endl;
     BST::freeTree(tree);
     assert(result == depth);

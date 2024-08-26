@@ -6,6 +6,7 @@
 class MaxDepth {
   public:
     int maxDepth(BST::TreeNode* root);
+    int maxDepth2(BST::TreeNode* root);
   private:
 };
 
