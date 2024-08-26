@@ -106,30 +106,36 @@ clean:
 " > makefile
 
 # Generate .ycm_extra_conf #####################################################
+#printf "\
+#import os
+#
+#CPP_INCL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include'))
+#CPP_IMPL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include/impl'))
+#
+#flags = [
+#    '-Wall',
+#    '-Wextra',
+#    '-std=c++11',
+#    '-xc++',
+#    '-I'+CPP_INCL_DIR ,
+#    '-I'+CPP_IMPL_DIR
+#    ]
+#
+#SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', ]
+#
+#def FlagsForFile( filename, **kwargs ):
+#  return {
+#      'flags': flags,
+#      'do_cache': True
+#      }
+#
+#" > .ycm_extra_conf.py
+
+# Generate .clangd for LSP support #############################################
 printf "\
-import os
-
-CPP_INCL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include'))
-CPP_IMPL_DIR = os.path.abspath(os.path.dirname('../../Utility/cpp/include/impl'))
-
-flags = [
-    '-Wall',
-    '-Wextra',
-    '-std=c++11',
-    '-xc++',
-    '-I'+CPP_INCL_DIR ,
-    '-I'+CPP_IMPL_DIR
-    ]
-
-SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', ]
-
-def FlagsForFile( filename, **kwargs ):
-  return {
-      'flags': flags,
-      'do_cache': True
-      }
-
-" > .ycm_extra_conf.py
+CompileFlags:
+  Add: [-I../../Utility/cpp/include, -Wall, -Wextra, -std=c++11]
+" > .clangd
 
 # Make a vim session with splits
 vim $LC_TITLE.h +"vsp $LC_TITLE.cpp" +"wincmd h" +"sp test.cpp" \
