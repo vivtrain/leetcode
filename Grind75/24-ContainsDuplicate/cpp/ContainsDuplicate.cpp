@@ -13,3 +13,7 @@ bool ContainsDuplicate::containsDuplicate(std::vector<int>& nums) {
   return false;
 }
 
+bool ContainsDuplicate::containsDuplicate2(std::vector<int>& nums) {
+  return std::unordered_set<int>(nums.begin(), nums.end()).size() != nums.size();
+}
+
