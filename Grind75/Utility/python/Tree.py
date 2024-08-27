@@ -2,13 +2,13 @@ from __future__ import annotations
 from typing import Optional
 
 class TreeNode:
-  def __init__(self, val, left=None, right=None):
+  def __init__(self, val, left=None, right=None) -> None:
     self.val = val
     self.left = left
     self.right = right
 
-def insertTree(tree: TreeNode, val) -> TreeNode:
-  while tree != None:
+def insertTree(tree: Optional[TreeNode], val) -> TreeNode:
+  while tree is not None:
     if val < tree.val:
       if tree.left == None:
         tree.left = TreeNode(val)
@@ -25,7 +25,7 @@ def insertTree(tree: TreeNode, val) -> TreeNode:
       return tree
   return TreeNode(val)
 
-def makeTree(lst: list) -> TreeNode:
+def makeTree(lst: list) -> Optional[TreeNode]:
   if lst == []:
     return None
   root = insertTree(None, lst[0])
@@ -33,7 +33,7 @@ def makeTree(lst: list) -> TreeNode:
     insertTree(root, lst[i])
   return root
 
-def printTree_recurse(prefix: str, tree: TreeNode, isLeft: bool):
+def printTree_recurse(prefix: str, tree: Optional[TreeNode], isLeft: bool) -> None:
   if tree:
     print(prefix + ('|--' if isLeft else '`--'), tree.val, sep='')
     printTree_recurse(prefix + ('|  ' if isLeft else '   '), tree.left, True)
