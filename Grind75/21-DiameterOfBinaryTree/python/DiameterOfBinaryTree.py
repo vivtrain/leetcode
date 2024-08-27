@@ -10,7 +10,7 @@ class Solution(object):
   def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
 
     def diameter_recurse(root: Optional[TreeNode], best: int)\
-        -> (int, int):
+        -> tuple[int, int]:
       if root is None:
         return (0, best)
       leftDepth, best = diameter_recurse(root.left, best)
@@ -18,7 +18,7 @@ class Solution(object):
       best = max(leftDepth + rightDepth, best)
       return max(leftDepth, rightDepth)+1, best
 
-    depth, diameter = diameter_recurse(root, 0)
+    _, diameter = diameter_recurse(root, 0)
     return diameter
 
 if __name__ == '__main__':

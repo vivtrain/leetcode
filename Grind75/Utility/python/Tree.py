@@ -41,7 +41,7 @@ def printTree_recurse(prefix: str, tree: Optional[TreeNode], isLeft: bool) -> No
   else:
     print(prefix + ('|--' if isLeft else '`--'), '.', sep='')
 
-def printTree(tree: TreeNode):
+def printTree(tree: Optional[TreeNode]):
   printTree_recurse('', tree, False)
 
 

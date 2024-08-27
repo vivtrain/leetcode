@@ -6,4 +6,5 @@ run
 **/__pycache__
 *.py[cod]
 .ycm_extra_conf.py
+**/.mypy_cache/
 

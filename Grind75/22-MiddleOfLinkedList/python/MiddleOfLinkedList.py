@@ -3,21 +3,22 @@
 from __future__ import annotations
 import sys
 sys.path.append('../../Utility/python')
-from typing import Optional
+from typing import Optional, List, Tuple
 from List import *
 
 class Solution(object):
   def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
     slow = head
     fast = head
-    while fast is not None and fast.next is not None:
+    while fast is not None and fast.next is not None and slow is not None:
       slow = slow.next
       fast = fast.next.next
     return slow
 
 if __name__ == '__main__':
   soln = Solution()
-  testCases = [(makeList([]), None)]
+  testCases: List[Tuple[Optional[ListNode], Optional[ListNode]]]
+  testCases = [((makeList([]), None))]
 
   for length in range(1,11):
     lst = makeList(list(range(length)))
