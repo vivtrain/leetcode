@@ -11,6 +11,11 @@ namespace Time {
     return std::chrono::duration_cast<std::chrono::milliseconds>(now() - since).count() / 1000.0;
   }
 
+  inline double elapsed_millis(
+      std::chrono::time_point<std::chrono::steady_clock> since) {
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(now() - since).count() / 1000.0;
+  }
+
 }
 
 
