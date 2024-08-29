@@ -1,4 +1,5 @@
 #include "ClimbingStairs.h"
+#include <cassert>
 
 int ClimbingStairs::climbStairs(int n) {
   if (n == 0)
@@ -12,12 +13,27 @@ int ClimbingStairs::climbStairs(int n) {
   return sum;
 }
 
-int ClimbingStairs::climbStairs_recursive(int n) {
+int ClimbingStairs::climbStairs_naive(int n) {
   if (n <= 0)
     return 1;
   else if (n == 1)
     return 1;
   else
-    return climbStairs_recursive(n-1) + climbStairs_recursive(n-2);
+    return climbStairs_naive(n-1) + climbStairs_naive(n-2);
+}
+
+int ClimbingStairs::climbStairs_memoized(int n) {
+  if (n >=0 && memo.size() < n+1)
+    memo.resize(n+1);
+  if (n <= 1) {
+    memo[0] = memo[1] = 1;
+    return 1;
+  } else {
+    if (memo[n-1] == 0)
+      memo[n-1] = climbStairs_memoized(n-1);
+    if (memo[n-2] == 0)
+      memo[n-2] = climbStairs_memoized(n-2);
+    return memo[n-1] + memo[n-2];
+  }
 }
 
