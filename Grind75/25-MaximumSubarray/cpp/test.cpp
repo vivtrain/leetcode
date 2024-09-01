@@ -20,14 +20,21 @@ int main() {
     {{-1,-2,-2,-2,3,2,-2,0}, 5},
     {{1,2,-1,-2,2,1,-2,1}, 3},
   };
+
+  bool success = true;
   for (auto test : testCases) {
     cout << prettyString(test.first) << ", " << test.second << " -> " << flush;
     int result = soln.maxSubArray(test.first);
     cout << result;
     if (result != test.second) {
       cout << " \e[91mFAIL\e[0m";
+      success = false;
     }
     cout << endl;
+  }
+
+  if (success) {
+    cout << "\e[92mTESTS PASSED!" << endl;
   }
 }
 

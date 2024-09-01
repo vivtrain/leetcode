@@ -5,7 +5,7 @@
 
 class MaximumSubarray {
   public:
-    int maxSubArray(std::vector<int>& nums);
+    int maxSubArray(std::vector<int> &nums);
   private:
 };
 
