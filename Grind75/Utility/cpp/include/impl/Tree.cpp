@@ -1,8 +1,13 @@
 #include <Tree.h>
 #include <iostream>
 #include <vector>
+#include <locale>
 
 namespace BST {
+  bool isUTF = std::locale("").name().find("UTF") != std::string::npos;
+  std::string lpf_ = isUTF ? "├──" : "|--";
+  std::string rpf_ = isUTF ? "└──" : "`--";
+  std::string v_   = isUTF ? "│  " : "|  ";
 
   void freeTree(BST::TreeNode *root) {
     if (root) {
@@ -64,11 +69,11 @@ namespace BST {
 
   void printTree_recurse(std::string prefix, TreeNode *root, bool isLeft) {
     if (root) {
-      std::cout << prefix << (isLeft ? "|--" : "`--") << root->val << std::endl;
-      printTree_recurse(prefix + (isLeft ? "|  " : "   "), root->left, true);
-      printTree_recurse(prefix + (isLeft ? "|  " : "   "), root->right, false);
+      std::cout << prefix << (isLeft ? lpf_ : rpf_) << root->val << std::endl;
+      printTree_recurse(prefix + (isLeft ? v_ : "   "), root->left, true);
+      printTree_recurse(prefix + (isLeft ? v_ : "   "), root->right, false);
     } else {
-      std::cout << prefix << (isLeft ? "|--" : "`--") << "." << std::endl;
+      std::cout << prefix << (isLeft ? lpf_ : rpf_) << "." << std::endl;
     }
   }
   void printTree(TreeNode *root) {
@@ -76,5 +81,4 @@ namespace BST {
   }
 
 }
-
 
