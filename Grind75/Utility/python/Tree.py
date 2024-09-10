@@ -44,4 +44,3 @@ def printTree_recurse(prefix: str, tree: Optional[TreeNode], isLeft: bool) -> No
 def printTree(tree: Optional[TreeNode]):
   printTree_recurse('', tree, False)
 
-

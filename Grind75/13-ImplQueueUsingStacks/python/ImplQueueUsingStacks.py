@@ -4,7 +4,7 @@ from __future__ import annotations
 import sys
 sys.path.append('../../Utility/python')
 
-class MyQueue(Object):
+class MyQueue(object):
   enqueue: list 
   dequeue: list
 
