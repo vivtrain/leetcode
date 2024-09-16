@@ -17,6 +17,13 @@ int main() {
     { {{0,1,1},{1,1,0},{1,1,1}}, {{0,1,1},{1,1,0},{2,2,1}} },
   };
 
+  vector<vector<int>> largeMat(50, vector<int>(50, 1));
+  largeMat[0][49] = 0;
+  largeMat[20][10] = 0;
+  largeMat[35][25] = 0;
+  largeMat[32][30] = 0;
+  prettyPrint2D(soln.updateMatrix(largeMat));
+
   bool success = true;
   for (auto test : testCases) {
     prettyPrint2D(test.first);
