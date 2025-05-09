@@ -10,6 +10,7 @@ using namespace std;
 int main() {
   ThreeSum soln;
   vector<pair<vector<int>, vector<int>>> testcases = {
+    {{}, {}},
     {{-1, 0, 1}, {-1, 0, 1}},
   };
 
