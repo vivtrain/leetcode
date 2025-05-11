@@ -7,7 +7,7 @@ CPP = g++ -std=c++11 -g
 run: test.cpp ThreeSum.o
 	$(CPP) $^ -o run -I$(INCLUDE_DIR)
 
-ThreeSum.o: ThreeSum.cpp ThreeSum.h
+ThreeSum.o: ThreeSum.cpp ThreeSum.h $(INCLUDE_DIR)/minMax.h
 	$(CPP) -o $@ -c $< -I$(INCLUDE_DIR)
 
 clean:

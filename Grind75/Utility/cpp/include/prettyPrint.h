@@ -6,26 +6,32 @@
 #include <sstream>
 #include <iostream>
 
-template<class VecType>
-void prettyPrint(const std::vector<VecType>& vec) {
+template<class T>
+void prettyPrint(const std::vector<T>& vec) {
   std::cout << '[';
-  for (auto it = vec.begin(); it != vec.end()-1; it++)
-    std::cout << *it << ", ";
-  std::cout << *(vec.end()-1) << ']' << std::endl;
+  if (vec.size() > 0) {
+    for (auto it = vec.begin(); it != vec.end()-1; it++)
+      std::cout << *it << ", ";
+    std::cout << *(vec.end()-1);
+  }
+  std::cout << ']' << std::endl;
 }
 
-template<class VecType>
-std::string prettyString(const std::vector<VecType>& vec) {
+template<class T>
+std::string prettyString(const std::vector<T>& vec) {
   std::stringstream output;
   output << '[';
-  for (auto it = vec.begin(); it != vec.end()-1; it++)
-    output << *it << ", ";
-  output << *(vec.end()-1) << ']';
+  if (vec.size() > 0) {
+    for (auto it = vec.begin(); it != vec.end()-1; it++)
+      output << *it << ", ";
+    output << *(vec.end()-1);
+  }
+  output << ']';
   return output.str();
 }
 
-template<class VecType>
-void prettyPrint2D(const std::vector<std::vector<VecType>>& vec) {
+template<class T>
+void prettyPrint2D(const std::vector<std::vector<T>>& vec) {
   std::cout << "[";
   if (vec.size() > 0)
     std::cout << prettyString(*vec.begin());
