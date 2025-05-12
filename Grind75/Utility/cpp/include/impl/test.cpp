@@ -1,3 +1,4 @@
+#include <colors.h>
 #include <ostream>
 #include <prettyPrint.h>
 #include <vector>
@@ -30,6 +31,7 @@ int main() {
 
   prettyPrint(vec);
   std::cout << prettyString(vec) << std::endl;
+  colorOut(colors::BLUE)<< prettyString(vec) << std::endl;
   prettyPrint2D(vec2D);
 }
 

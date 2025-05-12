@@ -1,12 +1,14 @@
 #ifndef PRETTY_PRINT
 #define PRETTY_PRINT
 
+#include <ostream>
 #include <vector>
 #include <string>
 #include <sstream>
 #include <iostream>
+#include "colors.h"
 
-template<class T>
+template<typename T>
 void prettyPrint(const std::vector<T>& vec) {
   std::cout << '[';
   if (vec.size() > 0) {
@@ -17,7 +19,7 @@ void prettyPrint(const std::vector<T>& vec) {
   std::cout << ']' << std::endl;
 }
 
-template<class T>
+template<typename T>
 std::string prettyString(const std::vector<T>& vec) {
   std::stringstream output;
   output << '[';
@@ -43,6 +45,16 @@ void prettyPrint2D(const std::vector<std::vector<T>>& vec) {
   if (vec.size() > 1)
     std::cout << " " << prettyString(*(vec.end()-1));
   std::cout << "]" << std::endl;
+}
+
+template<typename T>
+std::ostream& colorOut(const char *color) {
+  return std::cout << color;
+}
+
+template<typename T>
+std::ostream& colorOut(const char *color, const T &input) {
+  return std::cout << color;
 }
 
 #endif

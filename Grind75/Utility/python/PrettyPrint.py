@@ -1,6 +1,9 @@
-from __future__ import annotations
-from typing import Any
+from typing import Any, List
+import Colors
 
-def prettyPrint2D(mat: list[list[Any]]) -> None:
+def color(input: Any, color: str) -> str:
+  return color + str(input) + Colors.NO_COLOR
+
+def prettyPrint2D(mat: List[List[Any]]) -> None:
   print('[[' + ']\n ['.join([', '.join([str(cell) for cell in row]) for row in mat]) + ']]')
 
