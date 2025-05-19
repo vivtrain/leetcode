@@ -54,7 +54,7 @@ std::ostream& colorOut(const char *color) {
 
 template<typename T>
 std::ostream& colorOut(const char *color, const T &input) {
-  return std::cout << color;
+  return std::cout << color << input << colors::NO_COLOR;
 }
 
 #endif
