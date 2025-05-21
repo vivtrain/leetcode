@@ -14,18 +14,18 @@ using namespace std;
 
 bool CourseSchedule::canFinish(int numCourses, vector<vector<int>>& prerequisites) {
 
-  const size_t n = numCourses;
-  vector<vector<int>> adjacency(numCourses, vector<int>());
-  vector<int> inDegree(numCourses, 0);
+  const size_t N = numCourses;
+  vector<vector<int>> adjacency(N, vector<int>());
+  vector<int> inDegree(N, 0);
   for (vector<int> &edge : prerequisites) {
     adjacency[edge[1]].push_back(edge[0]);
     inDegree[edge[0]]++;
   }
 
   stack<int> dfs;
-  for (int c = 0; c < numCourses; c++)
-    if (inDegree[c] == 0)
-      dfs.push(c);
+  for (size_t course = 0; course < N; course++)
+    if (inDegree[course] == 0)
+      dfs.push(course);
 
   vector<int> topoSort;
 
@@ -40,5 +40,5 @@ bool CourseSchedule::canFinish(int numCourses, vector<vector<int>>& prerequisite
     }
   }
   prettyPrint(topoSort);
-  return topoSort.size() == n;
+  return topoSort.size() == N;
 }
