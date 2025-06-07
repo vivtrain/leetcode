@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-I../../Utility/cpp/include, -Wall, -Wextra, -std=c++11]
+  Add: [-I../../Utility/cpp/include, -Wall, -Wextra, -std=c++17]
