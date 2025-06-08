@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import sys
+from typing import List, Tuple
 sys.path.append('../../Utility/python')
 
 class Solution(object):
@@ -18,6 +19,23 @@ class Solution(object):
       sumBefore += n
     return bestSum
 
+  def maxSubArray_DnC(self, nums: List[int]) -> int:
+    def msa(lst: List[int], start: int, end: int) -> int:
+      if start == end:
+        return lst[start]
+      center = (end + start) // 2
+      leftSum, rightSum, runningSum = lst[center], lst[center+1], 0
+      for l in range(center, start-1, -1):
+        runningSum += lst[l]
+        leftSum = max(leftSum, runningSum)
+      runningSum = 0
+      for r in range(center+1, end+1, 1):
+        runningSum += lst[r]
+        rightSum = max(rightSum, runningSum)
+      centerSum = leftSum + rightSum
+      return max(msa(lst, start, center), msa(lst, center+1, end), centerSum)
+    return msa(nums, 0, len(nums)-1);
+
 if __name__ == '__main__':
   soln = Solution()
   testCases = [
@@ -33,11 +51,11 @@ if __name__ == '__main__':
   ]
 
   success = True
-  for lst, max in testCases:
-    print(f'{lst} => {max}  -->  ', end='')
-    res = soln.maxSubArray(lst)
+  for lst, answer in testCases[:]:
+    print(f'{lst} => {answer}  -->  ', end='')
+    res = soln.maxSubArray_DnC(lst)
     print(res, end='')
-    if res != max:
+    if res != answer:
       success = False
       print(' \033[91mFAIL\033[0m')
     else:
