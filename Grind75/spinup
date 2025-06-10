@@ -40,7 +40,6 @@ if __name__ == '__main__':
 
   for test in testCases:
     pass
-  print('TESTS PASSED!')
 
 " > $LC_TITLE.py
 cd - > /dev/null
@@ -77,8 +76,6 @@ printf "\
 # Generate C++ Test file containing main #######################################
 printf "\
 #include \"$LC_TITLE.h\"
-#include <iostream>
-#include <cassert>
 
 int main() {
   $LC_TITLE soln;
@@ -92,7 +89,7 @@ UTIL_DIR = ../../Utility/cpp
 INCLUDE_DIR = \$(UTIL_DIR)/include
 IMPL_DIR = \$(UTIL_DIR)/include/impl
 UTIL_OBJ_DIR = \$(UTIL_DIR)/obj
-CPP = g++ -std=c++11 -g
+CPP = g++ -std=c++17 -g
 
 run: test.cpp $LC_TITLE.o
 \t\$(CPP) $^ -o run -I\$(INCLUDE_DIR)
@@ -134,12 +131,14 @@ clean:
 # Generate .clangd for LSP support #############################################
 printf "\
 CompileFlags:
-  Add: [-I../../Utility/cpp/include, -Wall, -Wextra, -std=c++11]
+  Add: [-I../../Utility/cpp/include, -Wall, -Wextra, -std=c++17]
 " > .clangd
 
 # Make a vim session with splits
-vim $LC_TITLE.h +"vsp $LC_TITLE.cpp" +"wincmd h" +"sp test.cpp" \
+nvim $LC_TITLE.h +"vsp $LC_TITLE.cpp" +"wincmd h" +"sp test.cpp" \
     +"wincmd k" +wa +"normal gg" +"set ssop-=options" +mks +qa
+echo "exe 'NvimTreeFocus'" >> Session.vim
+echo "wincmd l" >> Session.vim
 
 # Return to top-level directory
 cd - > /dev/null
