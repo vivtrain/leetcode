@@ -26,7 +26,7 @@ int main() {
     colorOut(colors::BLUE, "test: ") << prettyString(nums)
       << " => " << prettyString(answer) << endl;
     vector<int> result = soln.productExceptSelf(nums);
-    cout << " --> " << prettyString(result) << " ";
+    colorOut(colors::LIGHT_YELLOW, " --> ") << prettyString(result) << " ";
     if (result == answer)
       colorOut(colors::GREEN, "PASS");
     else

@@ -5,6 +5,7 @@
 
 class ProductExceptSelf {
   public:
+    std::vector<int> productExceptSelf_ONsp(std::vector<int>& nums);
     std::vector<int> productExceptSelf(std::vector<int>& nums);
   private:
 };

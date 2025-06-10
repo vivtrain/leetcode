@@ -4,23 +4,37 @@
 
 using namespace std;
  
-vector<int> ProductExceptSelf::productExceptSelf(vector<int>& nums) {
-  size_t N = nums.size();
+vector<int> ProductExceptSelf::productExceptSelf_ONsp(vector<int>& nums) {
+  int N = nums.size();
   if (N < 2)
     return {};
   vector<int> productsForward(N), productsBackward(N), productsExceptSelf(N);
 
-  productsForward[0] = nums[0];
-  productsBackward[N-1] = nums[N-1];
-  for (size_t i = 1, j = N-2; i < N && j >= 0; i++, j--) {
-    productsForward[i] = productsForward[i-1] * nums[i];
-    productsBackward[j] = productsBackward[j+1] * nums[j];
+  productsForward[0] = productsBackward[N-1] = 1;
+  for (int i = 1, j = N-2; i < N && j >= 0; i++, j--) {
+    productsForward[i] = productsForward[i-1] * nums[i-1];
+    productsBackward[j] = productsBackward[j+1] * nums[j+1];
   }
 
-  productsExceptSelf[0] = productsBackward[1];
-  productsExceptSelf[N-1] = productsForward[N-2];
-  for (size_t i = 1; i < N-1; i++) {
-    productsExceptSelf[i] = productsForward[i-1] * productsBackward[i+1];
+  for (int i = 0; i < N; i++)
+    productsExceptSelf[i] = productsForward[i] * productsBackward[i];
+
+  return productsExceptSelf;
+}
+
+vector<int> ProductExceptSelf::productExceptSelf(vector<int>& nums) {
+  int N = nums.size();
+  if (N < 2)
+    return {};
+  vector<int> productsExceptSelf(N);
+
+  productsExceptSelf[0] = 1;
+  for (int i = 1; i < N; i++)
+    productsExceptSelf[i] = productsExceptSelf[i-1] * nums[i-1];
+  int productsBackward = 1;
+  for (int j = N-1; j >= 0; j--) {
+    productsExceptSelf[j] *= productsBackward;
+    productsBackward *= nums[j];
   }
 
   return productsExceptSelf;
