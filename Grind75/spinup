@@ -58,7 +58,7 @@ printf "\
 #ifndef $SNAKE_CASE
 #define $SNAKE_CASE
 
-class $LC_TITLE {
+class Solution {
   public:
   private:
 };
@@ -78,7 +78,7 @@ printf "\
 #include \"$LC_TITLE.h\"
 
 int main() {
-  $LC_TITLE soln;
+  Solution soln;
 }
 
 " > test.cpp
@@ -87,8 +87,8 @@ int main() {
 printf "\
 UTIL_DIR = ../../Utility/cpp
 INCLUDE_DIR = \$(UTIL_DIR)/include
-IMPL_DIR = \$(UTIL_DIR)/include/impl
-UTIL_OBJ_DIR = \$(UTIL_DIR)/obj
+IMPL_DIR = \$(INCLUDE_DIR)/impl
+OBJ_DIR = \$(IMPL_DIR)/obj
 CPP = g++ -std=c++17 -g
 
 run: test.cpp $LC_TITLE.o
