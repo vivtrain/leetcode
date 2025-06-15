@@ -6,8 +6,11 @@
 class Solution {
   public:
     int search(std::vector<int>& nums, int target);
+    int search2(std::vector<int>& nums, int target);
+    int search3(std::vector<int>& nums, int target);
   private:
-    int searchNotRotated(std::vector<int>& nums, int lowerBound, int upperBound, int target);
+    int binarySearch(std::vector<int>& nums, int lowerBound, int upperBound, int target);
+    int search3_recurse(std::vector<int>& nums, int lowerBound, int upperBound, int target);
 };
 
 #endif
