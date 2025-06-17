@@ -15,21 +15,23 @@ class Solution(object):
       return []
     results: List[List[int]] = []
 
-    def combSum(index: int, leftover: int, combination: List[int] ):
-      if leftover < 0 or index == len(candidates):
+    def combSum(leftover: int, combination: List[int]):
+      if leftover < 0 or len(candidates) == 0:
         return
       elif leftover == 0:
         results.append(combination.copy())
         return 
-      cand = candidates[index]
+      cand = candidates[-1]
       # take
       combination.append(cand)
-      combSum(index, leftover - cand, combination)
+      combSum(leftover - cand, combination)
       combination.pop()
       # skip
-      combSum(index + 1, leftover, combination)
+      candidates.pop()
+      combSum(leftover, combination)
+      candidates.append(cand)
     
-    combSum(0, target, [])
+    combSum(target, [])
     return results
 
 if __name__ == '__main__':
