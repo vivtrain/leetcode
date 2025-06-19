@@ -4,6 +4,8 @@ from __future__ import annotations
 import sys
 sys.path.append('../../Utility/python')
 from typing import List
+from PrettyPrint import *
+from Colors import *
 
 class Solution(object):
   def combine(self, n: int, k: int) -> List[List[int]]:
@@ -33,13 +35,19 @@ class Solution(object):
 if __name__ == '__main__':
   soln = Solution()
   testCases = [
-    ( 1, 0, [] ),
+    ( 1, 0, [[]] ),
     ( 1, 1, [[1]] ),
     ( 2, 1, [[1],[2]] ),
     ( 3, 2, [[1,2],[1,3],[2,3]] ),
-    ( 4, 2, [[1,2],[1,3],[1,4],[2,1],[2,3],[2,4],[3,1],[3,2],[3,4]] ),
+    ( 4, 2, [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]] ),
   ]
 
   for n, k, combinations in testCases:
-    print(soln.combine(n, k))
+    answer = set([tuple(sorted(c)) for c in combinations])
+    result = soln.combine(n, k)
+    resultSet = set([tuple(sorted(c)) for c in result])
+    colorPrint(LIGHT_BLUE, n, "choose", k)
+    colorPrint(WHITE, answer)
+    good = GREEN if resultSet==answer and len(resultSet)==len(result) else RED
+    colorPrint(good, resultSet)
 
