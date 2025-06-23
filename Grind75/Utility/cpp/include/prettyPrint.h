@@ -33,7 +33,7 @@ std::string prettyString(const std::vector<T>& vec, std::string delim=", ") {
 }
 
 template<class T>
-void prettyPrint2D(const std::vector<std::vector<T>>& vec, std::string outerDelim="\n", std::string innerDelim=", ") {
+void prettyPrint2D(const std::vector<std::vector<T>>& vec, std::string outerDelim="\n ", std::string innerDelim=", ") {
   std::cout << "[";
   if (vec.size() > 0)
     std::cout << prettyString(*vec.begin(), innerDelim);

@@ -139,6 +139,8 @@ nvim $LC_TITLE.h +"vsp $LC_TITLE.cpp" +"wincmd h" +"sp test.cpp" \
     +"wincmd k" +wa +"normal gg" +"set ssop-=options" +mks +qa
 echo "exe 'NvimTreeFocus'" >> Session.vim
 echo "wincmd l" >> Session.vim
+echo "exe \"lua require'lspconfig'\"" >> Session.vim
+echo "exe 'LspStart'" >> Session.vim
 
 # Return to top-level directory
 cd - > /dev/null
