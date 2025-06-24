@@ -1,7 +1,5 @@
 #include "AccountsMerge.h"
-#include "prettyPrint.h"
 #include <algorithm>
-#include <cstddef>
 #include <map>
 #include <set>
 #include <unordered_map>
@@ -9,6 +7,37 @@
 #include <string>
 
 using namespace std;
+
+vector<vector<string>> Solution::accountsMerge(vector<vector<string>> &accounts) {
+  UnionFind uf(accounts.size());
+  unordered_map<string, int> emailToAccount;
+  for (size_t a = 0; a < accounts.size(); a++) {
+    const vector<string> &account = accounts[a];
+    uf.insert(a);
+    for (size_t e = 1; e < account.size(); e++) {
+      const string &email = account[e];
+      auto found = emailToAccount.find(email);
+      if (found != emailToAccount.end())
+        uf.unify(a, found->second);
+      else
+        emailToAccount[email] = a;
+    }
+  }
+  vector<vector<string>> results;
+  unordered_map<int, vector<int>> groups = uf.groupSets();
+  for (auto &[rep, ids] : groups) {
+    vector<string> result { accounts[rep][0] };
+    vector<string> emails;
+    for (int i : ids)
+      emails.insert(emails.end(), accounts[i].begin()+1, accounts[i].end());
+    sort(emails.begin(), emails.end());
+    auto removed = unique(emails.begin(), emails.end());
+    emails.erase(removed, emails.end());
+    result.insert(result.end(), emails.begin(), emails.end());
+    results.push_back(result);
+  }
+  return results;
+}
 
 int findRep(const int &element, unordered_map<int, int> &reps) {
   if (reps.find(element) == reps.end())
@@ -70,7 +99,7 @@ void unify(const string &e1, const string &e2, unordered_map<string, string> &re
   reps[findRep(e2, reps)] = findRep(e1, reps);
 }
 
-vector<vector<string>> Solution::accountsMerge(vector<vector<string>> &accounts) {
+vector<vector<string>> Solution::accountsMerge4(vector<vector<string>> &accounts) {
   unordered_map<string, string> reps;
   unordered_map<string, set<string>> recoverSets;
   unordered_map<string, const string*> names;
