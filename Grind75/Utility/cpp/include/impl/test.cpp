@@ -39,6 +39,7 @@ void main2() {
 }
 
 int main() {
+  main2();
   map<int, string> m;
   unordered_map<string, int> um;
   set<int> s;

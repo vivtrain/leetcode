@@ -151,10 +151,10 @@ std::string prettyString(
 }
 
 // PRETTY PRINT 2D ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
-template<class T>
+template<typename T>
 void prettyPrint2D(
     const std::vector<std::vector<T>>& vec,
-    std::string outerDelim="\n",
+    std::string outerDelim=",\n ",
     std::string innerDelim=", ") {
   std::cout << "[";
   if (vec.size() > 0)
@@ -170,8 +170,11 @@ void prettyPrint2D(
 }
 
 // PRETTY STRING 2D ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
-template<class T>
-std::string prettyString2D(const std::vector<std::vector<T>>& vec, std::string outerDelim="\n", std::string innerDelim=", ") {
+template<typename T>
+std::string prettyString2D(
+    const std::vector<std::vector<T>>& vec,
+    std::string outerDelim=",\n ",
+    std::string innerDelim=", ") {
   std::stringstream output;
   output << "[";
   if (vec.size() > 0)
