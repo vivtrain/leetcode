@@ -17,9 +17,10 @@ namespace BST {
   };
 
   void freeTree(TreeNode *root);
-  TreeNode* insertTree(TreeNode *root, int val);
-  TreeNode* makeTree(std::vector<int> ints);
-  TreeNode* bushy(int depth);
+  TreeNode* makeTree(const std::vector<TreeNode*> &nodes);
+  TreeNode* insertBST(TreeNode *root, int val);
+  TreeNode* makeBST(const std::vector<int> &values);
+  TreeNode* bushyBST(int depth);
   void printTree(TreeNode *root);
 
 }

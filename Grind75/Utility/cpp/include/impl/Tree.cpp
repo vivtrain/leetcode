@@ -17,18 +17,18 @@ namespace BST {
     }
   }
 
-  TreeNode* insertTree(TreeNode *root, int val) {
+  TreeNode* insertBST(TreeNode *root, int val) {
     if (root) {
       if (val < root->val) {
         if (root->left)
-          return insertTree(root->left, val);
+          return insertBST(root->left, val);
         else {
           root->left = new TreeNode(val);
           return root->left;
         }
       } else if (val > root->val) {
         if (root->right)
-          return insertTree(root->right, val);
+          return insertBST(root->right, val);
         else {
           root->right = new TreeNode(val);
           return root->right;
@@ -41,16 +41,32 @@ namespace BST {
     }
   }
 
-  TreeNode* makeTree(std::vector<int> ints) {
-    if (ints.empty())
+  TreeNode* makeBST(const std::vector<int> &values) {
+    if (values.empty())
       return nullptr;
-    TreeNode *root = new TreeNode(ints.front());
-    for (size_t index = 1; index < ints.size(); index++)
-      insertTree(root, ints[index]);
+    TreeNode *root = new TreeNode(values.front());
+    for (size_t index = 1; index < values.size(); index++)
+      insertBST(root, values[index]);
     return root;
   }
 
-  TreeNode* bushy(int depth) {
+  TreeNode* makeTree(const std::vector<TreeNode*> &nodes) {
+    // left =  parent * 2 + 1
+    // right = parent * 2 + 2
+    const size_t nNodes = nodes.size();
+    for (size_t n = 0; n < nNodes; n++) {
+      TreeNode *node = nodes[n];
+      if (!node)
+        continue;
+      size_t left  = 2*n + 1;
+      size_t right = 2*n + 2;
+      node->left  = (left < nNodes)  ? nodes[left]  : nullptr;
+      node->right = (right < nNodes) ? nodes[right] : nullptr;
+    }
+    return nodes[0];
+  }
+
+  TreeNode* bushyBST(int depth) {
     size_t N = 1, exp = depth, levels = 0, l = 1, t = 0;
     for (size_t i = 0; i < exp; i++)
       N += N;
@@ -64,7 +80,7 @@ namespace BST {
         t++;
       }
     }
-    return makeTree(tree);
+    return makeBST(tree);
   }
 
   void printTree_recurse(std::string prefix, TreeNode *root, bool isLeft) {
