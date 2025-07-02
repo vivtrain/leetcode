@@ -12,6 +12,24 @@ class Solution:
     if root is None:
       return []
     rightView: List[int] = []
+    nodeQ: Deque[Tuple[Optional[TreeNode], int]] = deque()
+    nodeQ.append( (root, 0) )
+    while nodeQ:
+      node, depth = nodeQ.popleft()
+      if node is None:
+        continue
+      if depth == len(rightView):
+        rightView.append(node.val)
+      else:
+        rightView[depth] = node.val
+      nodeQ.append( (node.left,  depth + 1) )
+      nodeQ.append( (node.right, depth + 1) )
+    return rightView
+
+  def rightSideView2(self, root: Optional[TreeNode]) -> List[int]:
+    if root is None:
+      return []
+    rightView: List[int] = []
     levelOrder: List[List[int]] = []
     nodeQ: Deque[Tuple[Optional[TreeNode], int]] = deque()
     nodeQ.append( (root, 0) )

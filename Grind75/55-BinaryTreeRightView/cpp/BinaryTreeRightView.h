@@ -7,6 +7,7 @@
 class Solution {
   public:
     std::vector<int> rightSideView(BST::TreeNode* root);
+    std::vector<int> rightSideView2(BST::TreeNode* root);
 };
 
 #endif
