@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Optional, Any
+from typing import Optional, Any, List
 
 class TreeNode:
   def __init__(self, val, left=None, right=None) -> None:
@@ -7,7 +7,7 @@ class TreeNode:
     self.left: Optional[TreeNode] = left
     self.right: Optional[TreeNode] = right
 
-def insertTree(tree: Optional[TreeNode], val) -> TreeNode:
+def insertBST(tree: Optional[TreeNode], val) -> TreeNode:
   while tree is not None:
     if val < tree.val:
       if tree.left == None:
@@ -25,13 +25,25 @@ def insertTree(tree: Optional[TreeNode], val) -> TreeNode:
       return tree
   return TreeNode(val)
 
-def makeTree(lst: list) -> Optional[TreeNode]:
-  if lst == []:
+def makeBST(lst: List[Optional[TreeNode]]) -> Optional[TreeNode]:
+  if len(lst) == 0:
     return None
-  root = insertTree(None, lst[0])
+  root = insertBST(None, lst[0])
   for i in range(1, len(lst)):
-    insertTree(root, lst[i])
+    insertBST(root, lst[i])
   return root
+
+def makeTree(lst: List[Optional[TreeNode]]) -> Optional[TreeNode]:
+  if not lst:
+    return None
+  for i,node in enumerate(lst):
+    if node is None:
+      continue
+    left:  int = 2*i + 1
+    right: int = 2*i + 2
+    node.left  = lst[left]  if left  < len(lst) else None
+    node.right = lst[right] if right < len(lst) else None
+  return lst[0]
 
 def printTree_recurse(prefix: str, tree: Optional[TreeNode], isLeft: bool) -> None:
   if tree:

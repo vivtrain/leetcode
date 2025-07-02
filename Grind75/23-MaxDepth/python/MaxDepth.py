@@ -24,7 +24,7 @@ if __name__ == '__main__':
   ]
 
   for lst, depth in testCases:
-    tree = makeTree(lst)
+    tree = makeBST(lst)
     printTree(tree)
     print(f'should have a depth of {depth}, ', end='')
     res = soln.maxDepth(tree)

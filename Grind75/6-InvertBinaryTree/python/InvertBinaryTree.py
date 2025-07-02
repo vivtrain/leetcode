@@ -19,7 +19,7 @@ class Solution(object):
 if __name__ == '__main__':
   soln = Solution()
 
-  tree = makeTree([4,2,6,3]);
+  tree = makeBST([4,2,6,3]);
   printTree(tree)
   printTree(soln.invertTree(tree))
  

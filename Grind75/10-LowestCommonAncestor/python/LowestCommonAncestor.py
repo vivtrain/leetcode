@@ -27,13 +27,13 @@ class Solution:
 if __name__ == '__main__':
   soln = Solution()
 
-  n4 = makeTree([4])
-  n2 = insertTree(n4, 2)
-  n6 = insertTree(n4, 6)
-  n1 = insertTree(n4, 1)
-  n3 = insertTree(n4, 3)
-  n5 = insertTree(n4, 5)
-  n7 = insertTree(n4, 7)
+  n4 = makeBST([4])
+  n2 = insertBST(n4, 2)
+  n6 = insertBST(n4, 6)
+  n1 = insertBST(n4, 1)
+  n3 = insertBST(n4, 3)
+  n5 = insertBST(n4, 5)
+  n7 = insertBST(n4, 7)
   printTree(n4)
 
   testCases = [

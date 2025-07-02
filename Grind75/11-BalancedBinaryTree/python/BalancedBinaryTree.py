@@ -9,7 +9,7 @@ class Solution(object):
   pass
 
 if __name__ == '__main__':
-  root = makeTree([1,2,3])
+  root = makeBST([1,2,3])
   printTree(root)
   soln = Solution()
   testCases = []

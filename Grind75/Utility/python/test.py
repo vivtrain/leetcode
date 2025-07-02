@@ -1,7 +1,15 @@
 from Colors import *
 from PrettyPrint import *
+from Tree import *
+from List import *
 
 if __name__ == '__main__':
-  prettyPrint2D([[],[1,3,4],[2]])
-  print(color('hello', GREEN), color(123, BG_RED))
+  tree = makeTree([
+                       TreeNode(0),
+          TreeNode(1),                  TreeNode(2),
+      TreeNode(3), None,          TreeNode(4),     None,
+      None, None, None, None, TreeNode(5), None, None, None,
+    ]
+  )
+  printTree(tree)
 

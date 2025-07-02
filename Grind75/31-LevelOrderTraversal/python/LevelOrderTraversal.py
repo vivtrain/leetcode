@@ -34,7 +34,7 @@ class Solution(object):
 
 if __name__ == '__main__':
   soln = Solution()
-  test = makeTree([4, 2, 1, 3, 6, 7])
+  test = makeBST([4, 2, 1, 3, 6, 7])
 
   printTree(test)
   prettyPrint2D(soln.levelOrder(test))

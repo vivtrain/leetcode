@@ -33,7 +33,7 @@ if __name__ == '__main__':
       ]
 
   for test in testCases:
-    tree = makeTree(test[0])
+    tree = makeBST(test[0])
     diameter = test[1]
     printTree(tree)
     print(f'should have diameter {diameter}, got ', end='')

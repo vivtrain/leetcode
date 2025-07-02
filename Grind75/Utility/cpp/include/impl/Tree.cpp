@@ -51,8 +51,6 @@ namespace BST {
   }
 
   TreeNode* makeTree(const std::vector<TreeNode*> &nodes) {
-    // left =  parent * 2 + 1
-    // right = parent * 2 + 2
     const size_t nNodes = nodes.size();
     for (size_t n = 0; n < nNodes; n++) {
       TreeNode *node = nodes[n];
