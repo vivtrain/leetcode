@@ -30,6 +30,8 @@ printf "\
 from __future__ import annotations
 import sys
 sys.path.append('../../Utility/python')
+from PrettyPrint import *
+from Colors import *
 
 class Solution(object):
   pass
@@ -71,11 +73,17 @@ class Solution {
 printf "\
 #include \"$LC_TITLE.h\"
 
+using namespace std;
+
 " > $LC_TITLE.cpp
 
 # Generate C++ Test file containing main #######################################
 printf "\
 #include \"$LC_TITLE.h\"
+#include <prettyPrint.h>
+
+using namespace std;
+using namespace colors;
 
 int main() {
   Solution soln;
