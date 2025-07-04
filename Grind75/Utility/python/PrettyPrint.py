@@ -4,15 +4,13 @@ import Colors
 def color(input: Any, color: str) -> str:
   return color + str(input) + Colors.NO_COLOR
 
-def colorPrint(color: str, *args, **kwargs):
-  if 'sep' not in kwargs:
-    kwargs['sep'] = ' '
-  if 'end' not in kwargs:
-    kwargs['end'] = '\n'
-  print(color, end='')
-  for a in args:
-    print(a, end=kwargs['sep'])
-  print(Colors.NO_COLOR, end=kwargs['end'])
+def colorPrint(color: str, *args, end='\n', sep=' '):
+  print(color, sep='', end='')
+  for a in range(len(args)-1):
+    print(args[a], sep='', end=sep)
+  if len(args) > 0:
+    print(args[-1], sep='', end='')
+  print(Colors.NO_COLOR, sep='', end=end)
 
 def prettyPrint2D(mat: List[List[Any]]) -> None:
   print('[[' + ']\n ['.join([', '.join([str(cell) for cell in row]) for row in mat]) + ']]')
