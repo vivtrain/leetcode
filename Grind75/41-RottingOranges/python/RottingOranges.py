@@ -58,5 +58,5 @@ if __name__ == '__main__':
     prettyPrint2D(grid)
     print("Should take", answer, "minutes. Got ", end='')
     result = soln.orangesRotting(grid)
-    print(color(result, GREEN) if result == answer else color(result, RED))
+    print(colorString(result, GREEN) if result == answer else colorString(result, RED))
     pass

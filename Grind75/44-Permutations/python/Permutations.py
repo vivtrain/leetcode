@@ -39,5 +39,5 @@ if __name__ == '__main__':
     good = True
     for p in answer:
       good &= p in setResult
-    print(result, color("✓", GREEN) if good else color("✗", RED))
+    print(result, colorString("✓", GREEN) if good else colorString("✗", RED))
 

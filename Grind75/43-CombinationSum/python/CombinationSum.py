@@ -52,7 +52,7 @@ if __name__ == '__main__':
     result = soln.combinationSum(candidates, target)
     checkAnswer = set(tuple(sorted(l)) for l in answer)
     checkResult = set(tuple(sorted(l)) for l in result)
-    good = color('✔ ', GREEN) if checkAnswer == checkResult else color('✘', RED)
+    good = colorString('✔ ', GREEN) if checkAnswer == checkResult else colorString('✘', RED)
     print(result, good)
     pass
 

@@ -62,5 +62,5 @@ if __name__ == '__main__':
   for string, integer in testCases:
     colorPrint(LIGHT_BLUE, "'"+string+"'", "=>", integer, end=" ")
     result: int = soln.myAtoi(string)
-    print("-->", color(result, GREEN if result == integer else RED))
+    print("-->", colorString(result, GREEN if result == integer else RED))
 

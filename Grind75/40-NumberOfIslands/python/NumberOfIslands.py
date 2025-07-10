@@ -84,5 +84,5 @@ if __name__ == '__main__':
     prettyPrint2D(grid)
     print("should have", answer, "islands. Got ", end='')
     result = soln.numIslands2(grid)
-    print(color(result, GREEN) if result == answer else color(result, RED))
+    print(colorString(result, GREEN) if result == answer else colorString(result, RED))
 

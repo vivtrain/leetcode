@@ -44,5 +44,5 @@ if __name__ == '__main__':
   for m, n, answer in testCases:
     colorPrint(LIGHT_BLUE, "m: ", m, ",n: ", n, " => ", answer, sep='', end=' ')
     result = soln.uniquePaths(m, n)
-    print('-->', color(result, GREEN if result == answer else RED))
+    print('-->', colorString(result, GREEN if result == answer else RED))
 

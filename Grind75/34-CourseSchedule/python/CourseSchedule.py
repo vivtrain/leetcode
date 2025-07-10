@@ -61,8 +61,8 @@ if __name__ == '__main__':
   ]
 
   for nCourses, prereqs, answer in testCases:
-    print(color("TEST:", Colors.BLUE), nCourses, prereqs, "->", answer)
+    print(colorString("TEST:", Colors.BLUE), nCourses, prereqs, "->", answer)
     result = soln.canFinish(nCourses, prereqs)
-    msg = color("PASS", Colors.GREEN) if result == answer else color("FAIL", Colors.RED)
+    msg = colorString("PASS", Colors.GREEN) if result == answer else colorString("FAIL", Colors.RED)
     print(msg, result)
 

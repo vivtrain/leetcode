@@ -5,7 +5,7 @@ import sys
 
 sys.path.append('../../Utility/python')
 from typing import List
-from PrettyPrint import color
+from PrettyPrint import colorString
 from Colors import *
 
 class Solution(object):
@@ -35,12 +35,12 @@ if __name__ == '__main__':
   ]
 
   for nums, answer in testCases:
-    print(color("test:", LIGHT_BLUE), nums)
+    print(colorString("test:", LIGHT_BLUE), nums)
     print("       =>", answer)
     result = soln.productExceptSelf(nums)
-    print(color("       ->", LIGHT_YELLOW), result, end=' ')
+    print(colorString("       ->", LIGHT_YELLOW), result, end=' ')
     if result == answer:
-      print(color("PASS", GREEN))
+      print(colorString("PASS", GREEN))
     else:
-      print(color("FAIL", RED))
+      print(colorString("FAIL", RED))
 
