@@ -1,6 +1,9 @@
 from typing import Any, List
 import Colors
 
+def quote(s: str, delim="''") -> str:
+  return delim[0] + s + delim[1]
+
 def colorPrint(color: str, *args, end='\n', sep=' '):
   print(color, sep='', end='')
   for a in range(len(args)-1):
