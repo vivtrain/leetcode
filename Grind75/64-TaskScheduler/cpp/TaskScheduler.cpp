@@ -1,11 +1,13 @@
 #include "TaskScheduler.h"
 #include <algorithm>
+#include <array>
 #include <vector>
 
 using namespace std;
 
 int Solution::leastInterval(vector<char>& tasks, int n) {
-  vector<int> counts(26, 0);
+  array<int, 26> counts;
+  for (int &c : counts) c = 0;
   for (const char &c : tasks)
     counts[c - 'A']++;
 
