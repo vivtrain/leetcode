@@ -7,7 +7,7 @@ class TreeNode:
     self.left: Optional[TreeNode] = left
     self.right: Optional[TreeNode] = right
 
-def insertBST(tree: Optional[TreeNode], val) -> TreeNode:
+def insertBST(tree: Optional[TreeNode], val: Any) -> TreeNode:
   while tree is not None:
     if val < tree.val:
       if tree.left == None:
@@ -25,7 +25,7 @@ def insertBST(tree: Optional[TreeNode], val) -> TreeNode:
       return tree
   return TreeNode(val)
 
-def makeBST(lst: List[Optional[TreeNode]]) -> Optional[TreeNode]:
+def makeBST(lst: List[Any]) -> Optional[TreeNode]:
   if len(lst) == 0:
     return None
   root = insertBST(None, lst[0])
