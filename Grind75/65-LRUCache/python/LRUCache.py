@@ -18,39 +18,47 @@ class LRUCache:
   def __init__(self, capacity: int):
     self.capacity: int = capacity
     self.size: int = 0
-    self.index: Dict[int, LRUCache.Node] = {}
+    self.lookup: Dict[int, LRUCache.Node] = {}
     self.lru: Optional[LRUCache.Node] = None
     self.mru: Optional[LRUCache.Node] = None
 
+  def _evictLRU(self) -> None:
+    assert(self.lru is not None)
+    self.lookup.pop(self.lru.key)
+    prev = self.lru.prev
+    if prev is not None:
+      prev.next = None
+      self.lru = prev
+    else: # evict from LRU side (tail)
+      self.lru = None
+      self.mru = None
+      pass
+    self.size -= 1
+
   def _insert(self, key: int, value: int) -> None:
+    # Create Node
     node = LRUCache.Node(key, value)
+    # Evict if at capacity
     if self.size == self.capacity:
-      if self.lru is not None and self.lru.prev is not None:
-        self.index.pop(self.lru.key)
-        prev = self.lru.prev
-        prev.next = None
-        self.lru = prev
-      elif self.lru is not None:
-        self.index.pop(self.lru.key)
-        self.lru = None
-        self.mru = None
-        pass
-      self.size -= 1
-    node.next = self.mru
-    if self.mru is not None:
-      self.mru.prev = node
+      self._evictLRU()
+    # Insert at MRU side (head)
+    if self.mru is None:
+      self.lru = node # cache was empty => lru now exists
     else:
-      self.lru = node
+      self.mru.prev = node # existing mru => update its prev
+    node.next = self.mru
     self.mru = node
-    self.index[key] = node
+    self.lookup[key] = node
     self.size += 1
 
   def _update(self, key: int, value: int) -> None:
-    assert(self.mru is not None and self.lru is not None)
-    node = self.index[key]
+    assert(self.mru is not None)
+    assert(self.lru is not None)
+    assert(key in self.lookup)
+    node = self.lookup[key]
     node.value = value
     prev, next = node.prev, node.next
-    if prev is None: # i.e. node is self.mru
+    if prev is None: # i.e. node is self.mru => no change needed
       return
     elif next is None: # i.e. node is self.lru
       prev.next = None
@@ -64,15 +72,15 @@ class LRUCache:
     self.mru = node
 
   def get(self, key: int) -> int:
-    if key in self.index:
-      value = self.index[key].value
+    if key in self.lookup:
+      value = self.lookup[key].value
       self._update(key, value)
       return value
     else:
       return -1
 
   def put(self, key: int, value: int) -> None:
-    if key in self.index:
+    if key in self.lookup:
       self._update(key, value)
     else:
       self._insert(key, value)
