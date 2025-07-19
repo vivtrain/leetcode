@@ -2,7 +2,10 @@ from __future__ import annotations
 from typing import Optional, Any, List
 
 class TreeNode:
-  def __init__(self, val, left=None, right=None) -> None:
+  def __init__(self,
+      val: Any,
+      left: Optional[TreeNode] = None,
+      right: Optional[TreeNode] = None) -> None:
     self.val: Any = val
     self.left: Optional[TreeNode] = left
     self.right: Optional[TreeNode] = right
