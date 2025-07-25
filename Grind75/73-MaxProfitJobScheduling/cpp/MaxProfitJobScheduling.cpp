@@ -1,6 +1,8 @@
 #include "MaxProfitJobScheduling.h"
 #include <algorithm>
+#include <cstdint>
 #include <cstdio>
+#include <iterator>
 #include <sys/types.h>
 #include <tuple>
 #include <vector>
@@ -50,7 +52,7 @@ int Solution::endBeforeStart(int index, vector<tuple<int, int, int>> &jobs) {
   return best;
 }
 
-int Solution::jobScheduling(
+int Solution::jobScheduling3(
     vector<int>& startTime,
     vector<int>& endTime,
     vector<int>& profit) {
@@ -73,3 +75,29 @@ int Solution::jobScheduling(
   return bestProfit.back();
 }
 
+
+int Solution::jobScheduling(
+    vector<int>& startTime,
+    vector<int>& endTime,
+    vector<int>& profit) {
+  if (startTime.empty())
+    return 0;
+
+  vector<tuple<int, int, int>> jobs;
+  for (uint i = 0; i < startTime.size(); i++)
+    jobs.push_back({endTime[i], startTime[i], profit[i]});
+  sort(jobs.begin(), jobs.end());
+
+  vector<int> cache(jobs.size(), 0);
+  for (uint j = 0; j < jobs.size(); j++) {
+    const auto &[end, start, profit] = jobs[j];
+    const tuple<int, int, int> search {start, INT32_MAX, INT32_MAX};
+    const int lastEnd =
+      upper_bound(jobs.begin(), jobs.end(), search) - jobs.begin() - 1;
+    const int lastBest = lastEnd >= 0 ? cache[lastEnd] : 0;
+    const int prev = j > 0 ? cache[j-1] : 0;
+    cache[j] = max(prev, lastBest + profit);
+  }
+  return cache.back();
+}
+ 

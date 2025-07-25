@@ -15,6 +15,10 @@ class Solution {
         std::vector<int>& startTime,
         std::vector<int>& endTime,
         std::vector<int>& profit);
+    int jobScheduling3(
+        std::vector<int>& startTime,
+        std::vector<int>& endTime,
+        std::vector<int>& profit);
   private:
     int schedule(
         std::vector<std::tuple<int, int, int>> &jobs,
