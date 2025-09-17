@@ -1,0 +1,18 @@
+#!/bin/python3
+
+from __future__ import annotations
+import sys
+sys.path.append('../../Utility/python')
+from PrettyPrint import *
+from Colors import *
+
+class Solution(object):
+  pass
+
+if __name__ == '__main__':
+  soln = Solution()
+  testCases = []
+
+  for test in testCases:
+    pass
+
